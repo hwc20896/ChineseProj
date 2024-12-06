@@ -22,8 +22,6 @@ HEADERS += \
     questionmanagement.h \
     questiontemplate.h \
     ui_multiplechoiceform.h \
-    ui_trueorfalse.h \
-    ui_questionbaseform.h \
     ui_introwidget.h
 
 # Default rules for deployment.
@@ -33,6 +31,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 FORMS += \
     IntroWidget.ui \
-    MultipleChoiceForm.ui \
-    QuestionBaseForm.ui \
     TrueorFalseForm.ui

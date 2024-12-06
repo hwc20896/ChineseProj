@@ -25,6 +25,10 @@ public:
     QPushButton *optionB;
     QPushButton *optionC;
     QPushButton *optionD;
+    QPushButton *prevButton;
+    QPushButton *nextQuestion;
+    QLabel *correctState;
+    QLabel *progress;
 
     void setupUi(QWidget *MultipleChoice)
     {
@@ -60,6 +64,30 @@ public:
         optionD->setEnabled(false);
         optionD->setGeometry(QRect(530, 385, 270, 140));
         optionD->setFont(font1);
+        prevButton = new QPushButton(MultipleChoice);
+        prevButton->setObjectName("prevButton");
+        prevButton->setGeometry(QRect(50, 590, 160, 60));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
+        font2.setPointSize(15);
+        prevButton->setFont(font2);
+        nextQuestion = new QPushButton(MultipleChoice);
+        nextQuestion->setObjectName("nextQuestion");
+        nextQuestion->setGeometry(QRect(790, 590, 160, 60));
+        nextQuestion->setFont(font2);
+        correctState = new QLabel(MultipleChoice);
+        correctState->setObjectName("correctState");
+        correctState->setGeometry(QRect(200, 10, 190, 50));
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
+        font3.setPointSize(14);
+        correctState->setFont(font3);
+        correctState->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        progress = new QLabel(MultipleChoice);
+        progress->setObjectName("progress");
+        progress->setGeometry(QRect(790, 10, 190, 50));
+        progress->setFont(font3);
+        progress->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         retranslateUi(MultipleChoice);
 
@@ -74,6 +102,10 @@ public:
         optionB->setText(QString());
         optionC->setText(QString());
         optionD->setText(QString());
+        prevButton->setText(QCoreApplication::translate("MultipleChoice", "\342\206\220 \344\270\212\344\270\200\351\240\201", nullptr));
+        nextQuestion->setText(QCoreApplication::translate("MultipleChoice", "\344\270\213\344\270\200\351\240\201 \342\206\222", nullptr));
+        correctState->setText(QCoreApplication::translate("MultipleChoice", "TextLabel", nullptr));
+        progress->setText(QCoreApplication::translate("MultipleChoice", "TextLabel", nullptr));
     } // retranslateUi
 
 };

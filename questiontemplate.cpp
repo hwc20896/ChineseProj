@@ -8,77 +8,41 @@
 #define SETRIGHT SETCOLOR("#00ee22")
 #define BUTTONCLICK &QPushButton::clicked
 
-QTQB::QuestionBase(QWidget* parent) : QWidget(parent), base_ui(new Ui::QuestionBase){
-    base_ui->setupUi(this);
-}
-
-QTQB::~QuestionBase(){delete base_ui;}
-
-void QTQB::Cooldown(int msec){
-    QEventLoop* lp = new QEventLoop;
-    QTimer::singleShot(msec,lp,&QEventLoop::quit);
-    lp->exec();
-}
-
-QTMC::MultipleChoice(QMC* question, QWidget* parent) : QuestionBase(parent), ui(new Ui::MultipleChoice), Question(question){
+QuestionWidget::MultipleChoice::MultipleChoice(QuestionTemplate::MultipleChoice* question, int Index, QWidget* parent) : QWidget(parent), ui(new Ui::MultipleChoice), Index(Index), question(question){
     ui->setupUi(this);
-    ui->questionTitle->setText(QString("(%1) %2").arg(this->Index).arg(Question->QuestionTitle));
-    IndextoButton = {{0,ui->optionA},{1,ui->optionB},{2,ui->optionC},{3,ui->optionD}};
-    for (int i=0;i<4;i++) if (!Question->Options[i].isEmpty()){
-        IndextoButton[i]->setEnabled(true);
-        IndextoButton[i]->setText(Question->Options[i]);
-        connect(IndextoButton[i],BUTTONCLICK,this,[=]{AnswerCheck(i);});
+    Answered = false;
+    OptiontoButton = {{Option::A,ui->optionA},{Option::B,ui->optionB},{Option::C,ui->optionC},{Option::D,ui->optionD}};
+    for (size_t i = 0; i < OptiontoButton.size(); i++){
+        auto tar = OptiontoButton.begin();
+        std::advance(tar,i);
+        if (!question->Options[i].isEmpty()){
+            tar->second->setEnabled(true);
+            tar->second->setText(question->Options[i]);
+        }
+        connect(tar->second,&QPushButton::clicked,this,[=]{AnswerCheck(tar->first);});
     }
-    this->setStyleSheet("QPushButton#AnswerOption:hover{background-color: #6d7dff; color: black;");
 }
 
-QTMC::~MultipleChoice(){delete ui;}
+QuestionWidget::MultipleChoice::~MultipleChoice(){delete ui;}
 
-void QTMC::AnswerCheck(int Option){
+void QuestionWidget::MultipleChoice::AnswerCheck(Option option){
     if (!Answered){
         Answered = true;
-        auto* target = IndextoButton[Option];
-        target->SETCHOSEN;
+        bool Corr = option == question->CorrOption;
         Cooldown(800);
-        if (Option == Question->CorrOption) target->SETRIGHT;
+        if (Corr){OptiontoButton[option]->SETRIGHT;}
         else{
-            target->SETWRONG;
-            Cooldown(400);
-            IndextoButton[Question->CorrOption]->SETRIGHT;
+            OptiontoButton[option]->SETWRONG;
+            Cooldown(500);
+            OptiontoButton[question->CorrOption]->SETRIGHT;
         }
         Cooldown(500);
-        base_ui->nextQuestion->setEnabled(true);
+        ui->nextQuestion->setEnabled(true);
     }
 }
 
-
-QuestionTemplate::TrueorFalse::TrueorFalse(Question::TrueorFalse* question, QWidget* parent) : QuestionBase(parent), ui(new Ui::TrueorFalse), Question(question){
-    ui->setupUi(this);
-    ui->title->setText(QString("(%1) %2").arg(this->Index).arg(Question->QuestionTitle));
-    connect(ui->trueOption,BUTTONCLICK,this,[=]{AnswerCheck(true);});
-    connect(ui->falseOption,BUTTONCLICK,this,[=]{AnswerCheck(false);});
-    this->setStyleSheet("QPushButton#AnswerOption:hover{background-color: #6d7dff; color: black;");
+void QuestionWidget::MultipleChoice::Cooldown(int msec){
+    QEventLoop lp;
+    QTimer::singleShot(msec,&lp,&QEventLoop::quit);
+    lp.exec();
 }
-
-QTTF::~TrueorFalse(){delete ui;}
-
-void QTTF::AnswerCheck(bool Option){
-    if (!Answered){
-        Answered = true;
-        auto* target = OptiontoButton(Option);
-        target->SETCHOSEN;
-        Cooldown(800);
-        bool Corr = Option == Question->CorrOption;
-        if (Corr) target->SETRIGHT;
-        else{
-            target->SETWRONG;
-            Cooldown(400);
-            OptiontoButton(Question->CorrOption)->SETRIGHT;
-        }
-        emit Score(Corr);
-        Cooldown(500);
-        base_ui->nextQuestion->setEnabled(true);
-    }
-}
-
-QPushButton* QTTF::OptiontoButton(bool Option){return Option ? ui->trueOption : ui->falseOption;}
