@@ -17,13 +17,14 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>115</y>
+     <y>95</y>
      <width>800</width>
-     <height>125</height>
+     <height>150</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <family>Microsoft JhengHei</family>
      <pointsize>26</pointsize>
     </font>
    </property>
@@ -41,13 +42,14 @@
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>216</y>
+     <y>266</y>
      <width>270</width>
      <height>140</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <family>Microsoft JhengHei</family>
      <pointsize>15</pointsize>
     </font>
    </property>
@@ -62,13 +64,14 @@
    <property name="geometry">
     <rect>
      <x>530</x>
-     <y>216</y>
+     <y>266</y>
      <width>270</width>
      <height>140</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <family>Microsoft JhengHei</family>
      <pointsize>15</pointsize>
     </font>
    </property>
@@ -83,13 +86,14 @@
    <property name="geometry">
     <rect>
      <x>200</x>
-     <y>385</y>
+     <y>420</y>
      <width>270</width>
      <height>140</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <family>Microsoft JhengHei</family>
      <pointsize>15</pointsize>
     </font>
    </property>
@@ -104,13 +108,14 @@
    <property name="geometry">
     <rect>
      <x>530</x>
-     <y>385</y>
+     <y>420</y>
      <width>270</width>
      <height>140</height>
     </rect>
    </property>
    <property name="font">
     <font>
+     <family>Microsoft JhengHei</family>
      <pointsize>15</pointsize>
     </font>
    </property>
@@ -138,6 +143,9 @@
    </property>
   </widget>
   <widget class="QPushButton" name="nextQuestion">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>790</x>
@@ -168,7 +176,7 @@
    <property name="font">
     <font>
      <family>Microsoft JhengHei</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
     </font>
    </property>
    <property name="text">
@@ -190,7 +198,7 @@
    <property name="font">
     <font>
      <family>Microsoft JhengHei</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
     </font>
    </property>
    <property name="text">

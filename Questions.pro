@@ -31,4 +31,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 FORMS += \
     IntroWidget.ui \
-    TrueorFalseForm.ui
+    MultipleChoiceForm.ui

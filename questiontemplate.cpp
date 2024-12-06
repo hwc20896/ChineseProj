@@ -6,12 +6,12 @@
 #define SETCHOSEN SETCOLOR("#6d7dff")
 #define SETWRONG SETCOLOR("#ff0011")
 #define SETRIGHT SETCOLOR("#00ee22")
-#define BUTTONCLICK &QPushButton::clicked
 
-QuestionWidget::MultipleChoice::MultipleChoice(QuestionTemplate::MultipleChoice* question, int Index, QWidget* parent) : QWidget(parent), ui(new Ui::MultipleChoice), Index(Index), question(question){
+QuestionWidget::MultipleChoice::MultipleChoice(QuestionTemplate::MultipleChoice* question, size_t Index, QWidget* parent) : QWidget(parent), ui(new Ui::MultipleChoice), question(question), Index(Index){
     ui->setupUi(this);
     Answered = false;
     OptiontoButton = {{Option::A,ui->optionA},{Option::B,ui->optionB},{Option::C,ui->optionC},{Option::D,ui->optionD}};
+    ui->questionTitle->setText(question->QuestionTitle);
     for (size_t i = 0; i < OptiontoButton.size(); i++){
         auto tar = OptiontoButton.begin();
         std::advance(tar,i);
@@ -46,3 +46,4 @@ void QuestionWidget::MultipleChoice::Cooldown(int msec){
     QTimer::singleShot(msec,&lp,&QEventLoop::quit);
     lp.exec();
 }
+
