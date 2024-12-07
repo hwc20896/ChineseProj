@@ -1,10 +1,15 @@
 #include "widget.h"
 #include "questionmanagement.h"
 #include "QuestionList.h"
+#include <QMessageBox>
 
 IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::IntroWidget){
     intro_form->setupUi(this);
     connect(intro_form->startGame,&QPushButton::clicked,this,&IntroWidget::startGame);
+    connect(intro_form->rule,&QPushButton::clicked,this,[]{
+        QMessageBox* box = new QMessageBox(QMessageBox::Icon::Information,"尚未建設","規則頁尚未建設",QMessageBox::StandardButton::Ok);
+        box->show();
+    });
 }
 
 void IntroWidget::startGame(){
@@ -15,7 +20,7 @@ void IntroWidget::startGame(){
                                   Question11, Question12, Question13, Question14, Question15, Question16, Question17, Question18, Question19, Question20,
                                   Question21, Question22, Question23, Question24, Question25, Question26, Question27, Question28, Question29, Question30,
                                   Question31, Question32, Question33, Question34, Question35, Question36, Question37, Question38, Question39, Question40
-                              },22);
+                              },5);
     this->close();
     mng->show();
 }
