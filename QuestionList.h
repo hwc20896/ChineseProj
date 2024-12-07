@@ -40,6 +40,9 @@ namespace QuestionList{
     QTMC* Question28 = new QTMC("《西遊記》中唐僧的原型是：",{"玄奘","鑒真"},Option::A);
     QTMC* Question29 = new QTMC("唐代詩人賈島\"二句三年得，一吟雙淚流\"的詩句是：",{"獨行潭底影，數息樹邊身。","鳥宿池邊樹，僧敲月下門。"},Option::A);
     QTMC* Question30 = new QTMC("我國傳統表示次序的\"天干\"共有幾個字？",{"十個","十二個"},Option::A);
+    QTMC* Question31 = new QTMC("被譽為\"萬園之園\"的是：",{"頤和園","圓明園"},Option::B);
+    QTMC* Question32 = new QTMC("\"水\"字屬於下列哪種漢字構成方式？",{"象形字","表意字"},Option::A);
+    QTMC* Question33 = new QTMC("現在我們常用\"陽春白雪\"和\"下里巴人\"指代高雅和通俗的文藝作品，請問這兩個成語最初指的是什麼？",{"文章","畫作","樂曲"},Option::C);
 }
 
 #endif // QUESTIONLIST_H
