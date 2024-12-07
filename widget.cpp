@@ -10,7 +10,11 @@ IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::
 void IntroWidget::startGame(){
     using namespace QuestionList;
     QuestionManagement* mng = new QuestionManagement(
-                {Question1,Question2,Question3,Question4,Question5,Question6,Question7},4);
+                              {
+                                  Question01, Question02, Question03, Question04, Question05, Question06, Question07, Question08, Question09, Question10,
+                                  Question11, Question12, Question13, Question14, Question15, Question16, Question17, Question18, Question19, Question20,
+                                  Question21, Question22, Question23, Question24, Question25, Question26, Question27, Question28, Question29, Question30
+                              },22);
     this->close();
     mng->show();
 }

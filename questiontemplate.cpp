@@ -36,7 +36,8 @@ void QuestionWidget::MultipleChoice::AnswerCheck(Option option){
             Cooldown(500);
             OptiontoButton[question->CorrOption]->SETRIGHT;
         }
-        Cooldown(500);
+        Cooldown(700);
+        emit Score(Corr);
         ui->nextQuestion->setEnabled(true);
     }
 }
