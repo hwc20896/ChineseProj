@@ -43,6 +43,13 @@ namespace QuestionList{
     QTMC* Question31 = new QTMC("被譽為\"萬園之園\"的是：",{"頤和園","圓明園"},Option::B);
     QTMC* Question32 = new QTMC("\"水\"字屬於下列哪種漢字構成方式？",{"象形字","表意字"},Option::A);
     QTMC* Question33 = new QTMC("現在我們常用\"陽春白雪\"和\"下里巴人\"指代高雅和通俗的文藝作品，請問這兩個成語最初指的是什麼？",{"文章","畫作","樂曲"},Option::C);
+    QTMC* Question34 = new QTMC("京劇《貴妃醉酒》是根據哪部古代戲曲改編而成的？",{"《桃花扇》","《長生殿》","《牡丹亭》","《南柯記》"},Option::B);
+    QTMC* Question35 = new QTMC("道家思想在我國影響深遠，請問歷史中的哪一時期最接近道家所主張的無為而治？",{"文景之治","光武中興","貞觀之治","開無盛世"},Option::A);
+    QTMC* Question36 = new QTMC("下面哪句話出自《孟子》？",{"\"水能載舟，亦能覆舟\"","\"先天下之憂而憂，後天下之樂而樂\"","\"民惟邦本，本固邦寧\"","\"獨樂樂，與人樂樂，孰樂？\""},Option::D);
+    QTMC* Question37 = new QTMC("下列哪個不是北京的別稱？",{"大都","中都","上都","南京"},Option::C);
+    QTMC* Question38 = new QTMC("\"諱疾忌醫\"典故中的君王是：",{"齊桓公","蔡桓公"},Option::B);
+    QTMC* Question39 = new QTMC("\"桃花潭水深千尺，不及汪倫送我情\"詩中的\"我\"指的是誰？",{"杜甫","李白"},Option::B);
+    QTMC* Question40 = new QTMC("我們熟悉的《百家姓》是按照什麼方式排列的？",{"人口數量","政治地位"},Option::B);
 }
 
 #endif // QUESTIONLIST_H

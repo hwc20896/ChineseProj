@@ -39,7 +39,7 @@ class QuestionWidget::MultipleChoice : public QWidget{
         ~MultipleChoice();
         Ui::MultipleChoice* ui;
         inline void SetScore(int Corr, int Incorr){ui->correctState->setText(QString("<font color=\"#ff0000\">錯誤數 %1</font> | <font color=\"#00dd12\">%2 正確數</font>").arg(Incorr).arg(Corr));}
-        inline void SetProgress(int CurrentProgress, int Total){ui->progress->setText(QString("進度：%1 / %2 - %3%").arg(CurrentProgress).arg(Total).arg(TODOUBLE(CurrentProgress) / TODOUBLE(Total) * 100));}
+        inline void SetProgress(int CurrentProgress, int Total){ui->progress->setText(QString("進度：%1 / %2 - %3%").arg(CurrentProgress).arg(Total).arg(TODOUBLE(CurrentProgress) / TODOUBLE(Total) * 100, 0, 'g', 2));}
     private:
         QuestionTemplate::MultipleChoice* question;
         std::map<Option, QPushButton*> OptiontoButton;
