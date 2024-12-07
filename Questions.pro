@@ -10,19 +10,18 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    outrowidget.cpp \
     widget.cpp \
     questionmanagement.cpp \
     questiontemplate.cpp
 
 HEADERS += \
     QuestionList.h \
-    outrowidget.h \
     widget.h \
     questionmanagement.h \
     questiontemplate.h \
     ui_multiplechoiceform.h \
-    ui_introwidget.h
+    ui_introwidget.h \
+    ui_outrowidget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -31,4 +30,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 FORMS += \
     IntroWidget.ui \
-    MultipleChoiceForm.ui
+    MultipleChoiceForm.ui \
+    OutroWidget.ui

@@ -1,5 +1,4 @@
 #include "questionmanagement.h"
-#include "outrowidget.h"
 #include <algorithm>
 #include <random>
 
@@ -42,7 +41,5 @@ void QuestionManagement::UpdatePages(){
 }
 
 void QuestionManagement::Finish(){
-    OutroWidget* outro = new OutroWidget;
-    this->close();
-    outro->show();
+    emit GameFinish();
 }

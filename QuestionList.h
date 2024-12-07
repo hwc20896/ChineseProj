@@ -32,7 +32,7 @@ namespace QuestionList{
     QTMC* Question20 = new QTMC("\"近朱者赤，近墨者黑\"所蘊含的道理\n和下列哪句話最相似？",{"青出於藍，而勝於藍","蓬生麻中，不扶而直","公生明，偏生暗"},Option::B);
     QTMC* Question21 = new QTMC("\"天時不如地利，地利不如人和\"出自：",{"《孟子》","《莊子》"},Option::A);
     QTMC* Question22 = new QTMC("我國書法藝術博大精深，請問\n\"歐體\"是指誰的字體？",{"歐陽修","歐陽詢"},Option::B);
-    QTMC* Question23 = new QTMC("文學史上被稱作\"小李杜\"的是杜牧和誰？",{"李賀,李商隱"},Option::B);
+    QTMC* Question23 = new QTMC("文學史上被稱作\"小李杜\"的是杜牧和誰？",{"李賀","李商隱"},Option::B);
     QTMC* Question24 = new QTMC("\"大禹治水\"的故事家喻戶曉，\n大禹治理的是哪個流域的洪水？",{"長江流域","黃河流域"},Option::B);
     QTMC* Question25 = new QTMC("古代宮殿大門前成對的石獅一般都是：",{"左雄右雌","左雌右雄"},Option::A);
     QTMC* Question26 = new QTMC("\"結髮\"在古時是指結婚時：",{"丈夫把頭髮束起來","妻子把頭髮束起來","把夫妻頭髮束在一起"},Option::C);
@@ -42,14 +42,14 @@ namespace QuestionList{
     QTMC* Question30 = new QTMC("我國傳統表示次序的\"天干\"共有幾個字？",{"十個","十二個"},Option::A);
     QTMC* Question31 = new QTMC("被譽為\"萬園之園\"的是：",{"頤和園","圓明園"},Option::B);
     QTMC* Question32 = new QTMC("\"水\"字屬於下列哪種漢字構成方式？",{"象形字","表意字"},Option::A);
-    QTMC* Question33 = new QTMC("現在我們常用\"陽春白雪\"和\"下里巴人\"指代高雅和通俗的文藝作品，請問這兩個成語最初指的是什麼？",{"文章","畫作","樂曲"},Option::C);
-    QTMC* Question34 = new QTMC("京劇《貴妃醉酒》是根據哪部古代戲曲改編而成的？",{"《桃花扇》","《長生殿》","《牡丹亭》","《南柯記》"},Option::B);
-    QTMC* Question35 = new QTMC("道家思想在我國影響深遠，請問歷史中的哪一時期最接近道家所主張的無為而治？",{"文景之治","光武中興","貞觀之治","開無盛世"},Option::A);
+    QTMC* Question33 = new QTMC("現在我們常用\"陽春白雪\"\n和\"下里巴人\"指代高雅和通俗的文藝作品，\n請問這兩個成語最初指的是什麼？",{"文章","畫作","樂曲"},Option::C);
+    QTMC* Question34 = new QTMC("京劇《貴妃醉酒》是根據哪部\n古代戲曲改編而成的？",{"《桃花扇》","《長生殿》","《牡丹亭》","《南柯記》"},Option::B);
+    QTMC* Question35 = new QTMC("道家思想在我國影響深遠，請問歷史中的\n哪一時期最接近道家所主張的無為而治？",{"文景之治","光武中興","貞觀之治","開無盛世"},Option::A);
     QTMC* Question36 = new QTMC("下面哪句話出自《孟子》？",{"\"水能載舟，亦能覆舟\"","\"先天下之憂而憂，後天下之樂而樂\"","\"民惟邦本，本固邦寧\"","\"獨樂樂，與人樂樂，孰樂？\""},Option::D);
     QTMC* Question37 = new QTMC("下列哪個不是北京的別稱？",{"大都","中都","上都","南京"},Option::C);
     QTMC* Question38 = new QTMC("\"諱疾忌醫\"典故中的君王是：",{"齊桓公","蔡桓公"},Option::B);
-    QTMC* Question39 = new QTMC("\"桃花潭水深千尺，不及汪倫送我情\"詩中的\"我\"指的是誰？",{"杜甫","李白"},Option::B);
-    QTMC* Question40 = new QTMC("我們熟悉的《百家姓》是按照什麼方式排列的？",{"人口數量","政治地位"},Option::B);
+    QTMC* Question39 = new QTMC("\"桃花潭水深千尺，不及汪倫送我情\"\n詩中的\"我\"指的是誰？",{"杜甫","李白"},Option::B);
+    QTMC* Question40 = new QTMC("我們熟悉的《百家姓》是\n按照什麼方式排列的？",{"人口數量","政治地位"},Option::B);
 }
 
 #endif // QUESTIONLIST_H

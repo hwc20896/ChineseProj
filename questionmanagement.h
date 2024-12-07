@@ -8,6 +8,7 @@
 #define PrivateInsidePrivate
 
 class QuestionManagement : public QStackedWidget{
+    Q_OBJECT
     public:
         QuestionManagement(const std::vector<QuestionTemplate::MultipleChoice*>& questionList, size_t displayCount, QWidget* parent = 0);
     private:
@@ -19,6 +20,8 @@ class QuestionManagement : public QStackedWidget{
         std::vector<int> range(int Lim);
         int Corr=0, Incorr=0;
         int CurrentIndex=0;
+    signals:
+        void GameFinish();
 };
 
 #endif
