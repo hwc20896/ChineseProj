@@ -21,7 +21,8 @@ HEADERS += \
     questiontemplate.h \
     ui_multiplechoiceform.h \
     ui_introwidget.h \
-    ui_outrowidget.h
+    ui_outrowidget.h \
+    ui_rulewidget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -31,4 +32,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 FORMS += \
     IntroWidget.ui \
     MultipleChoiceForm.ui \
-    OutroWidget.ui
+    OutroWidget.ui \
+    RuleWidget.ui
