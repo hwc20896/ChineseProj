@@ -15,6 +15,7 @@ IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::
     connect(intro_form->rule,&QPushButton::clicked,this,[]{
         QMessageBox* box = new QMessageBox(QMessageBox::Icon::Information,"尚未建設","規則頁尚未建設",QMessageBox::StandardButton::Ok);
         box->show();
+        //  Pending for rule page
     });
 }
 
