@@ -39,9 +39,7 @@ public:
         replayButton = new QPushButton(OutroWidget);
         replayButton->setObjectName("replayButton");
         replayButton->setGeometry(QRect(370, 440, 241, 111));
-        QFont font1;
-        font1.setPointSize(20);
-        replayButton->setFont(font1);
+        replayButton->setFont(font);
 
         retranslateUi(OutroWidget);
 
@@ -51,8 +49,8 @@ public:
     void retranslateUi(QWidget *OutroWidget)
     {
         OutroWidget->setWindowTitle(QCoreApplication::translate("OutroWidget", "Form", nullptr));
-        tempLabel->setText(QCoreApplication::translate("OutroWidget", "Outro page under construction", nullptr));
-        replayButton->setText(QCoreApplication::translate("OutroWidget", "Replay", nullptr));
+        tempLabel->setText(QCoreApplication::translate("OutroWidget", "\347\265\220\346\235\237\351\240\201\345\273\272\350\250\255\344\270\255", nullptr));
+        replayButton->setText(QCoreApplication::translate("OutroWidget", "\351\207\215\347\216\251", nullptr));
     } // retranslateUi
 
 };

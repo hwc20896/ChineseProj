@@ -29,7 +29,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Outro page under construction</string>
+    <string>結束頁建設中</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -46,11 +46,12 @@
    </property>
    <property name="font">
     <font>
+     <family>Microsoft JhengHei</family>
      <pointsize>20</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>Replay</string>
+    <string>重玩</string>
    </property>
   </widget>
  </widget>
