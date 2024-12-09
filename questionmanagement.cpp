@@ -5,9 +5,9 @@
 QuestionManagement::QuestionManagement(const std::vector<QuestionTemplate::MultipleChoice*>& questionList, size_t displayCount, QWidget* parent) : QStackedWidget(parent), questionList(questionList){
     this->resize(1000,700);
     if (questionList.size() < displayCount) throw std::out_of_range("Cannot assign, Question too few");
-    auto out = GetRandomOrder(questionList, displayCount);
+    auto order = GetRandomOrder(questionList, displayCount);
     for (size_t i=0; i<displayCount;i++){
-        QuestionWidget::MultipleChoice* page = new QuestionWidget::MultipleChoice(out[i],i);
+        QuestionWidget::MultipleChoice* page = new QuestionWidget::MultipleChoice(order[i],i);
         this->addWidget(page);
         pageList.push_back(page);
         if (i==0) page->ui->prevButton->setVisible(false);
@@ -26,6 +26,20 @@ QuestionManagement::QuestionManagement(const std::vector<QuestionTemplate::Multi
     }
     this->setCurrentIndex(0);
     UpdatePages();
+    out = new QAudioOutput;
+    out->setVolume(.55);
+    bgm = new QMediaPlayer();
+    bgm->setAudioOutput(out);
+    bgm->setSource(QUrl("qrc:/BGM/OMFG_Pizza.mp3"));
+    connect(bgm,&QMediaPlayer::mediaStatusChanged,this,[=](QMediaPlayer::MediaStatus status){
+        if (status == QMediaPlayer::LoadedMedia) bgm->play();
+    });
+}
+
+QuestionManagement::~QuestionManagement(){
+    bgm->disconnect();
+    bgm->stop();
+    delete bgm;
 }
 
 std::vector<QuestionTemplate::MultipleChoice*> QuestionManagement::GetRandomOrder(std::vector<QuestionTemplate::MultipleChoice*> Questions, size_t Quantity){

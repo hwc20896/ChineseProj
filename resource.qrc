@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/BGM">
+        <file>OMFG_Pizza.mp3</file>
+    </qresource>
+</RCC>

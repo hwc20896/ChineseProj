@@ -34,3 +34,6 @@ FORMS += \
     MultipleChoiceForm.ui \
     OutroWidget.ui \
     RuleWidget.ui
+
+RESOURCES += \
+    resource.qrc
