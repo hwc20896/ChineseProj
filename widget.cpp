@@ -12,10 +12,12 @@ OutroWidget::OutroWidget(QWidget* parent) : QWidget(parent), ui(new Ui::OutroWid
 }
 
 Widget::Widget(QWidget* parent) : QStackedWidget(parent){
+    this->resize(1000,700);
     IntroWidget* intro = new IntroWidget;
     this->addWidget(intro);
     RuleWidget* rule = new RuleWidget;
     this->addWidget(rule);
+    this->setCurrentIndex(0);
     using namespace QuestionList;
     questionList = {
         Question01, Question02, Question03, Question04, Question05, Question06, Question07, Question08, Question09, Question10,
