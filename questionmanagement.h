@@ -5,6 +5,7 @@
 #include <vector>
 #include <QMediaPlayer>
 #include <QAudioOutput>
+#include <QSoundEffect>
 #include "questiontemplate.h"
 
 #define PrivateInsidePrivate

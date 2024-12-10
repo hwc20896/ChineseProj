@@ -26,8 +26,9 @@ QuestionManagement::QuestionManagement(const std::vector<QuestionTemplate::Multi
     }
     this->setCurrentIndex(0);
     UpdatePages();
+
     out = new QAudioOutput;
-    out->setVolume(.55);
+    out->setVolume(.25);
     bgm = new QMediaPlayer();
     bgm->setAudioOutput(out);
     bgm->setSource(QUrl("qrc:/BGM/OMFG_Pizza.mp3"));
