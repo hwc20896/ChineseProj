@@ -6,6 +6,7 @@
 #include <array>
 #include <map>
 #include <QPushButton>
+#include <QSoundEffect>
 #include "ui_multiplechoiceform.h"
 
 #define Functions
@@ -39,7 +40,7 @@ class QuestionWidget::MultipleChoice : public QWidget{
         ~MultipleChoice();
         Ui::MultipleChoice* ui;
         inline void SetScore(int Corr, int Incorr){ui->correctState->setText(QString("<font color=\"#ff0000\">錯誤數 %1</font> | <font color=\"#00dd12\">%2 正確數</font>").arg(Incorr).arg(Corr));}
-        inline void SetProgress(int CurrentProgress, int Total){ui->progress->setText(QString("進度：%1 / %2 - %3%").arg(CurrentProgress).arg(Total).arg(TODOUBLE(CurrentProgress) / TODOUBLE(Total) * 100, 0, 'g', 2));}
+        inline void SetProgress(int CurrentProgress, int Total){ui->progress->setText(QString("進度：%1 / %2 - %3%").arg(CurrentProgress).arg(Total).arg(TODOUBLE(CurrentProgress) / TODOUBLE(Total) * 100));}
     private:
         QuestionTemplate::MultipleChoice* question;
         std::map<Option, QPushButton*> OptiontoButton;
@@ -47,6 +48,7 @@ class QuestionWidget::MultipleChoice : public QWidget{
         void Cooldown(int msec);
         size_t Index = 0;
         bool Answered = false;
+        QSoundEffect* corrSound,* incorrSound;
     signals:
         void Score(bool Corr);
 };
