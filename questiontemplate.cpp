@@ -21,6 +21,10 @@ QuestionWidget::MultipleChoice::MultipleChoice(QuestionTemplate::MultipleChoice*
         }
         connect(tar->second,&QPushButton::clicked,this,[=]{AnswerCheck(tar->first);});
     }
+    corrSound = new QSoundEffect;
+    corrSound->setSource({"qrc:/SoundEffects/bingo.wav"});
+    incorrSound = new QSoundEffect;
+    incorrSound->setSource({"qrc:/SoundEffects/ohno.wav"});
 }
 
 QuestionWidget::MultipleChoice::~MultipleChoice(){delete ui;}
@@ -30,9 +34,13 @@ void QuestionWidget::MultipleChoice::AnswerCheck(Option option){
         Answered = true;
         bool Corr = option == question->CorrOption;
         Cooldown(800);
-        if (Corr){OptiontoButton[option]->SETRIGHT;}
+        if (Corr){
+            OptiontoButton[option]->SETRIGHT;
+            corrSound->play();
+        }
         else{
             OptiontoButton[option]->SETWRONG;
+            incorrSound->play();
             Cooldown(500);
             OptiontoButton[question->CorrOption]->SETRIGHT;
         }

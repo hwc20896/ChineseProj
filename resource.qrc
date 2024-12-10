@@ -2,4 +2,8 @@
     <qresource prefix="/BGM">
         <file>OMFG_Pizza.mp3</file>
     </qresource>
+    <qresource prefix="/SoundEffects">
+        <file>bingo.wav</file>
+        <file>ohno.wav</file>
+    </qresource>
 </RCC>
