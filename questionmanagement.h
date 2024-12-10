@@ -6,7 +6,9 @@
 #include <QMediaPlayer>
 #include <QAudioOutput>
 #include <QSoundEffect>
+#include <chrono>
 #include "questiontemplate.h"
+using namespace std::chrono;
 
 #define PrivateInsidePrivate
 
@@ -15,6 +17,9 @@ class QuestionManagement : public QStackedWidget{
     public:
         QuestionManagement(const std::vector<QuestionTemplate::MultipleChoice*>& questionList, size_t displayCount, QWidget* parent = 0);
         ~QuestionManagement();
+        std::vector<long long> timeStamp;
+        size_t displayCount;
+        int Corr = 0;
     private:
         std::vector<QuestionTemplate::MultipleChoice*> questionList;
         std::vector<QuestionWidget::MultipleChoice*> pageList;
@@ -22,12 +27,16 @@ class QuestionManagement : public QStackedWidget{
         void Finish();
         void UpdatePages();
         std::vector<int> range(int Lim);
-        int Corr=0, Incorr=0;
+        int Incorr=0;
         int CurrentIndex=0;
 
         //  BGM & Sound effects
         QAudioOutput* out;
         QMediaPlayer* bgm;
+
+        //  Timer
+        high_resolution_clock timer;
+        time_point<high_resolution_clock> start, end;
     signals:
         void GameFinish();
 };

@@ -32,6 +32,7 @@ QuestionWidget::MultipleChoice::~MultipleChoice(){delete ui;}
 void QuestionWidget::MultipleChoice::AnswerCheck(Option option){
     if (!Answered){
         Answered = true;
+        emit TimeTap();
         bool Corr = option == question->CorrOption;
         Cooldown(800);
         if (Corr){

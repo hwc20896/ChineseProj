@@ -2,11 +2,11 @@
 #include <algorithm>
 #include <random>
 
-QuestionManagement::QuestionManagement(const std::vector<QuestionTemplate::MultipleChoice*>& questionList, size_t displayCount, QWidget* parent) : QStackedWidget(parent), questionList(questionList){
+QuestionManagement::QuestionManagement(const std::vector<QuestionTemplate::MultipleChoice*>& questionList, size_t displayCount, QWidget* parent) : QStackedWidget(parent), displayCount(displayCount), questionList(questionList){
     this->resize(1000,700);
-    if (questionList.size() < displayCount) throw std::out_of_range("Cannot assign, Question too few");
-    auto order = GetRandomOrder(questionList, displayCount);
-    for (size_t i=0; i<displayCount;i++){
+    if (questionList.size() < this->displayCount) throw std::out_of_range("Cannot assign, Question too few");
+    auto order = GetRandomOrder(questionList, this->displayCount);
+    for (size_t i=0; i<this->displayCount;i++){
         QuestionWidget::MultipleChoice* page = new QuestionWidget::MultipleChoice(order[i],i);
         this->addWidget(page);
         pageList.push_back(page);
@@ -14,7 +14,10 @@ QuestionManagement::QuestionManagement(const std::vector<QuestionTemplate::Multi
         if (i==displayCount-1) page->ui->nextQuestion->setText("結束");
         connect(page->ui->prevButton, BUTTONCLICK, this, [=]{this->setCurrentIndex(currentIndex()-1);});
         connect(page->ui->nextQuestion, BUTTONCLICK, this, [=]{
-            if (i < displayCount-1) this->setCurrentIndex(currentIndex()+1);
+            if (i < displayCount-1) {
+                this->setCurrentIndex(currentIndex()+1);
+                start = timer.now();
+            }
             else Finish();
         });
         connect(page,&QuestionWidget::MultipleChoice::Score,this,[=](bool Corr){
@@ -23,9 +26,15 @@ QuestionManagement::QuestionManagement(const std::vector<QuestionTemplate::Multi
             CurrentIndex++;
             UpdatePages();
         });
+        connect(page,&QuestionWidget::MultipleChoice::TimeTap,this,[=]{
+            end = timer.now();
+            long long timeLapsed = duration_cast<milliseconds>(end - start).count();
+            timeStamp.push_back(timeLapsed);
+        });
     }
     this->setCurrentIndex(0);
     UpdatePages();
+    start = timer.now();
 
     out = new QAudioOutput;
     out->setVolume(.15);

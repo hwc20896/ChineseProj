@@ -51,6 +51,7 @@ class QuestionWidget::MultipleChoice : public QWidget{
         QSoundEffect* corrSound,* incorrSound;
     signals:
         void Score(bool Corr);
+        void TimeTap();
 };
 
 #endif
