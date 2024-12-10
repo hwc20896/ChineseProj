@@ -29,6 +29,8 @@ class Widget : public QStackedWidget{
         void startGame();
         void restartGame();
         void outroCall();
+        QString AddColor(int Corr, size_t Count);
+        QString TimeDisplay(double time);
         std::vector<QuestionTemplate::MultipleChoice*> questionList;
         QuestionManagement* mng;
 };
