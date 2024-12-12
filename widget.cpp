@@ -21,10 +21,16 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
     this->setCurrentIndex(0);
     using namespace QuestionList;
     questionList = {
-        Question01, Question02, Question03, Question04, Question05, Question06, Question07, Question08, Question09, Question10,
-        Question11, Question12, Question13, Question14, Question15, Question16, Question17, Question18, Question19, Question20,
-        Question21, Question22, Question23, Question24, Question25, Question26, Question27, Question28, Question29, Question30,
-        Question31, Question32, Question33, Question34, Question35, Question36, Question37, Question38, Question39, Question40
+        Q001, Q002, Q003, Q004, Q005, Q006, Q007, Q008, Q009, Q010,
+        Q011, Q012, Q013, Q014, Q015, Q016, Q017, Q018, Q019, Q020,
+        Q021, Q022, Q023, Q024, Q025, Q026, Q027, Q028, Q029, Q030,
+        Q031, Q032, Q033, Q034, Q035, Q036, Q037, Q038, Q039, Q040,
+        Q041, Q042, Q043, Q044, Q045, Q046, Q047, Q048, Q049, Q050,
+        Q051, Q052, Q053, Q054, Q055, Q056, Q057, Q058, Q059, Q060,
+        Q061, Q062, Q063, Q064, Q065, Q066, Q067, Q068, Q069, Q070,
+        Q071, Q072, Q073, Q074, Q075, Q076, Q077, Q078, Q079, Q080,
+        Q081, Q082, Q083, Q084, Q085, Q086, Q087, Q088, Q089, Q090,
+        Q091, Q092, Q093, Q094, Q095, Q096, Q097, Q098, Q099, Q100
     };
     connect(intro->intro_form->startGame,BUTTONCLICK,this,&Widget::startGame);
     connect(intro->intro_form->rule,BUTTONCLICK,this,[=]{this->setCurrentWidget(rule);});
