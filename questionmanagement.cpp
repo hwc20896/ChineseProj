@@ -18,7 +18,7 @@ QuestionManagement::QuestionManagement(const std::vector<QuestionTemplate::Multi
                 this->setCurrentIndex(currentIndex()+1);
                 start = timer.now();
             }
-            else Finish();
+            else emit GameFinish();
         });
         connect(page,&QuestionWidget::MultipleChoice::Score,this,[=](bool Corr){
             if (Corr) this->Corr++;
@@ -62,8 +62,4 @@ void QuestionManagement::UpdatePages(){
         i->SetScore(Corr,Incorr);
         i->SetProgress(CurrentIndex,pageList.size());
     }
-}
-
-void QuestionManagement::Finish(){
-    emit GameFinish();
 }

@@ -24,7 +24,6 @@ class QuestionManagement : public QStackedWidget{
         std::vector<QuestionTemplate::MultipleChoice*> questionList;
         std::vector<QuestionWidget::MultipleChoice*> pageList;
         std::vector<QuestionTemplate::MultipleChoice*> GetRandomOrder(std::vector<QuestionTemplate::MultipleChoice*> Questions, size_t Quantity);
-        void Finish();
         void UpdatePages();
         std::vector<int> range(int Lim);
         int Incorr=0;
