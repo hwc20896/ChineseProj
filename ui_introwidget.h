@@ -60,7 +60,7 @@ public:
     void retranslateUi(QWidget *IntroWidget)
     {
         IntroWidget->setWindowTitle(QCoreApplication::translate("IntroWidget", "Form", nullptr));
-        gameTitle->setText(QCoreApplication::translate("IntroWidget", "\344\270\255\350\217\257\346\226\207\345\214\226\347\237\245\350\255\23040\351\241\214", nullptr));
+        gameTitle->setText(QCoreApplication::translate("IntroWidget", "\344\270\255\350\217\257\346\226\207\345\214\226\347\237\245\350\255\230100\351\241\214", nullptr));
         rule->setText(QCoreApplication::translate("IntroWidget", "\350\246\217\345\211\207", nullptr));
         startGame->setText(QCoreApplication::translate("IntroWidget", "\351\226\213\345\247\213\346\270\270\346\210\262", nullptr));
     } // retranslateUi

@@ -29,7 +29,7 @@
     </font>
    </property>
    <property name="text">
-    <string>中華文化知識40題</string>
+    <string>中華文化知識100題</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignCenter</set>
