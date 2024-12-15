@@ -33,6 +33,11 @@ class Widget : public QStackedWidget{
         QString TimeDisplay(double time);
         std::vector<QuestionTemplate::MultipleChoice*> questionList;
         QuestionManagement* mng;
+        QStringList featureList;
+        QStringList modeExplanation;
+
+        IntroWidget* intro;
+        int currentGameMode = 0;
 };
 
 class OutroWidget : public QWidget{

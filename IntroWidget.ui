@@ -57,8 +57,8 @@
   <widget class="QPushButton" name="startGame">
    <property name="geometry">
     <rect>
-     <x>365</x>
-     <y>310</y>
+     <x>360</x>
+     <y>500</y>
      <width>270</width>
      <height>130</height>
     </rect>
@@ -71,6 +71,50 @@
    </property>
    <property name="text">
     <string>開始游戲</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="featureBox">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>340</y>
+     <width>270</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft JhengHei</family>
+     <pointsize>25</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="currentText">
+    <string notr="true"/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="gamemodeExplanation">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>430</y>
+     <width>580</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft JhengHei</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
    </property>
   </widget>
  </widget>

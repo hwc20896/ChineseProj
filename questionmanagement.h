@@ -7,6 +7,7 @@
 #include <QAudioOutput>
 #include <QSoundEffect>
 #include <chrono>
+#include <QTimer>
 #include "questiontemplate.h"
 using namespace std::chrono;
 
@@ -15,7 +16,7 @@ using namespace std::chrono;
 class QuestionManagement : public QStackedWidget{
     Q_OBJECT
     public:
-        QuestionManagement(const std::vector<QuestionTemplate::MultipleChoice*>& questionList, size_t displayCount, QWidget* parent = 0);
+        QuestionManagement(const std::vector<QuestionTemplate::MultipleChoice*>& questionList, size_t displayCount, int Mode,QWidget* parent = 0);
         ~QuestionManagement();
         std::vector<long long> timeStamp;
         size_t displayCount;
@@ -28,6 +29,7 @@ class QuestionManagement : public QStackedWidget{
         std::vector<int> range(int Lim);
         int Incorr=0;
         int CurrentIndex=0;
+        int Mode = 0;
 
         //  BGM & Sound effects
         QAudioOutput* out;
@@ -36,6 +38,12 @@ class QuestionManagement : public QStackedWidget{
         //  Timer
         high_resolution_clock timer;
         time_point<high_resolution_clock> start, end;
+
+        //  Countdown
+        QTimer* countdown,* tick;
+        void TimeTick();
+        static constexpr double countdownTime = 6e4;
+        double timeLimit;
     signals:
         void GameFinish();
 };

@@ -14,11 +14,11 @@ OutroWidget::OutroWidget(QWidget* parent) : QWidget(parent), ui(new Ui::OutroWid
 
 Widget::Widget(QWidget* parent) : QStackedWidget(parent){
     this->resize(1000,700);
-    IntroWidget* intro = new IntroWidget;
+    intro = new IntroWidget;
     this->addWidget(intro);
     RuleWidget* rule = new RuleWidget;
     this->addWidget(rule);
-    this->setCurrentIndex(0);
+    this->setCurrentIndex(currentGameMode);
     using namespace QuestionList;
     questionList = {
         Q001, Q002, Q003, Q004, Q005, Q006, Q007, Q008, Q009, Q010,
@@ -32,13 +32,23 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
         Q081, Q082, Q083, Q084, Q085, Q086, Q087, Q088, Q089, Q090,
         Q091, Q092, Q093, Q094, Q095, Q096, Q097, Q098, Q099, Q100
     };
+    featureList = {"普通","限時"};
+    modeExplanation = {
+        "普通模式：不限時，結尾顯示答題時間及平均每題時間",
+        "限時模式：限時1分鐘，超時將強制跳轉至結束頁"
+    };
+    intro->intro_form->featureBox->addItems(featureList);
+    intro->intro_form->featureBox->setCurrentIndex(0);
+    intro->intro_form->gamemodeExplanation->setText(modeExplanation[0]);
     connect(intro->intro_form->startGame,BUTTONCLICK,this,&Widget::startGame);
     connect(intro->intro_form->rule,BUTTONCLICK,this,[=]{this->setCurrentWidget(rule);});
     connect(rule->rule_form->returnButton,BUTTONCLICK,this,[=]{this->setCurrentWidget(intro);});
+    connect(intro->intro_form->featureBox,&QComboBox::currentIndexChanged,this,[=](int index){intro->intro_form->gamemodeExplanation->setText(modeExplanation[index]);});
 }
 
 void Widget::startGame(){
-    mng = new QuestionManagement(questionList,5);
+    currentGameMode = intro->intro_form->featureBox->currentIndex();
+    mng = new QuestionManagement(questionList,5,currentGameMode);
     this->close();
     mng->show();
     connect(mng,&QuestionManagement::GameFinish,this,&Widget::outroCall);
@@ -49,12 +59,24 @@ void Widget::outroCall(){
     mng->close();
     int64_t totaltime = 0;
     for (auto i : mng->timeStamp) totaltime += i;
+    out->ui->featureBox->addItems(featureList);
+    out->ui->featureBox->setCurrentIndex(currentGameMode);
+    out->ui->gamemodeExplanation->setText(modeExplanation[currentGameMode]);
+    connect(out->ui->featureBox, &QComboBox::currentIndexChanged,this,[=](int index){out->ui->gamemodeExplanation->setText(modeExplanation[index]);});
     out->ui->score->setText(QString("你的得分為：%1 / %2").arg(AddColor(mng->Corr,mng->displayCount)).arg(mng->displayCount));
-    out->ui->totalTime->setText(QString("總答題時間：%1").arg(TimeDisplay(totaltime)));
-    out->ui->avgTime->setText(QString("平均答題時間：%1").arg(TimeDisplay(totaltime / mng->displayCount)));
+    if (currentGameMode == 0){
+        out->ui->totalTime->setText(QString("總答題時間：%1").arg(TimeDisplay(totaltime)));
+        out->ui->avgTime->setText(QString("平均答題時間：%1").arg(TimeDisplay(totaltime / mng->displayCount)));
+    }
+    else{
+        out->ui->totalTime->setVisible(false);
+        out->ui->avgTime->setVisible(false);
+    }
+
     out->show();
     connect(out,&OutroWidget::Replay,this,[=]{
-        mng = new QuestionManagement(questionList,5);
+        currentGameMode = out->ui->featureBox->currentIndex();
+        mng = new QuestionManagement(questionList,5,currentGameMode);
         out->close();
         mng->show();
         connect(mng,&QuestionManagement::GameFinish,this,&Widget::outroCall);
@@ -78,10 +100,10 @@ QString Widget::AddColor(int Corr, size_t Count){
 
 QString Widget::TimeDisplay(double timeInput){
     if (timeInput > 6e4){
-            double remain = remainder(timeInput,60.0);
-            return QString("%1分%2秒").arg(floor(timeInput/6e4)).arg(QString::number(remain<0?remain+60:remain,'g',3));
-        }
-        else if (timeInput == 6e4) return "1分鐘";
-        else if (timeInput >= 0) return QString("%1秒").arg(QString::number(timeInput/1000.0,'g',3));
-        else throw std::range_error("Invalid duration");
+        double remain = remainder(timeInput,60.0);
+        return QString("%1分%2秒").arg(floor(timeInput/6e4)).arg(QString::number(remain<0?remain+60:remain,'g',3));
+    }
+    else if (timeInput == 6e4) return "1分鐘";
+    else if (timeInput >= 0) return QString("%1秒").arg(QString::number(timeInput/1000.0,'g',3));
+    else throw std::range_error("Invalid duration");
 }

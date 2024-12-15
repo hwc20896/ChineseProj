@@ -29,6 +29,7 @@ public:
     QPushButton *nextQuestion;
     QLabel *correctState;
     QLabel *progress;
+    QLabel *timerDisplay;
 
     void setupUi(QWidget *MultipleChoice)
     {
@@ -88,6 +89,11 @@ public:
         progress->setGeometry(QRect(790, 10, 190, 50));
         progress->setFont(font2);
         progress->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        timerDisplay = new QLabel(MultipleChoice);
+        timerDisplay->setObjectName("timerDisplay");
+        timerDisplay->setGeometry(QRect(500, 10, 220, 50));
+        timerDisplay->setFont(font2);
+        timerDisplay->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         retranslateUi(MultipleChoice);
 
@@ -106,6 +112,7 @@ public:
         nextQuestion->setText(QCoreApplication::translate("MultipleChoice", "\344\270\213\344\270\200\351\240\201 \342\206\222", nullptr));
         correctState->setText(QCoreApplication::translate("MultipleChoice", "TextLabel", nullptr));
         progress->setText(QCoreApplication::translate("MultipleChoice", "TextLabel", nullptr));
+        timerDisplay->setText(QCoreApplication::translate("MultipleChoice", "TextLabel", nullptr));
     } // retranslateUi
 
 };

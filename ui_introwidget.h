@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
@@ -23,6 +24,8 @@ public:
     QLabel *gameTitle;
     QPushButton *rule;
     QPushButton *startGame;
+    QComboBox *featureBox;
+    QLabel *gamemodeExplanation;
 
     void setupUi(QWidget *IntroWidget)
     {
@@ -46,11 +49,25 @@ public:
         rule->setFont(font1);
         startGame = new QPushButton(IntroWidget);
         startGame->setObjectName("startGame");
-        startGame->setGeometry(QRect(365, 310, 270, 130));
+        startGame->setGeometry(QRect(360, 500, 270, 130));
         QFont font2;
         font2.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font2.setPointSize(18);
         startGame->setFont(font2);
+        featureBox = new QComboBox(IntroWidget);
+        featureBox->setObjectName("featureBox");
+        featureBox->setGeometry(QRect(360, 340, 270, 81));
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
+        font3.setPointSize(25);
+        featureBox->setFont(font3);
+        featureBox->setStyleSheet(QString::fromUtf8("text-align: center;"));
+        featureBox->setCurrentText(QString::fromUtf8(""));
+        gamemodeExplanation = new QLabel(IntroWidget);
+        gamemodeExplanation->setObjectName("gamemodeExplanation");
+        gamemodeExplanation->setGeometry(QRect(210, 430, 580, 61));
+        gamemodeExplanation->setFont(font1);
+        gamemodeExplanation->setAlignment(Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
 
         retranslateUi(IntroWidget);
 
@@ -63,6 +80,7 @@ public:
         gameTitle->setText(QCoreApplication::translate("IntroWidget", "\344\270\255\350\217\257\346\226\207\345\214\226\347\237\245\350\255\230100\351\241\214", nullptr));
         rule->setText(QCoreApplication::translate("IntroWidget", "\350\246\217\345\211\207", nullptr));
         startGame->setText(QCoreApplication::translate("IntroWidget", "\351\226\213\345\247\213\346\270\270\346\210\262", nullptr));
+        gamemodeExplanation->setText(QCoreApplication::translate("IntroWidget", "TextLabel", nullptr));
     } // retranslateUi
 
 };
