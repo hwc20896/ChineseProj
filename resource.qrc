@@ -6,4 +6,10 @@
         <file>bingo.wav</file>
         <file>ohno.wav</file>
     </qresource>
+    <qresource prefix="/Drawables">
+        <file>drawables/mute_pressed.png</file>
+        <file>drawables/mute_unpressed.png</file>
+        <file>drawables/unmute_pressed.png</file>
+        <file>drawables/unmute_unpressed.png</file>
+    </qresource>
 </RCC>

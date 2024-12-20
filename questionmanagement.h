@@ -8,6 +8,7 @@
 #include <QSoundEffect>
 #include <chrono>
 #include <QTimer>
+#include <QIcon>
 #include "questiontemplate.h"
 using namespace std::chrono;
 
@@ -21,6 +22,11 @@ class QuestionManagement : public QStackedWidget{
         std::vector<long long> timeStamp;
         size_t displayCount;
         int Corr = 0;
+
+        //  Mute Switch
+        QIcon muted, unmuted;
+        bool isMuted;
+        void UpdateMute();
     private:
         std::vector<QuestionTemplate::MultipleChoice*> questionList;
         std::vector<QuestionWidget::MultipleChoice*> pageList;

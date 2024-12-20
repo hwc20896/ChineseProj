@@ -29,6 +29,7 @@ public:
     QPushButton *exitButton;
     QComboBox *featureBox;
     QLabel *gamemodeExplanation;
+    QPushButton *muteSwitch;
 
     void setupUi(QWidget *OutroWidget)
     {
@@ -74,7 +75,7 @@ public:
         avgTime->setAlignment(Qt::AlignmentFlag::AlignCenter);
         exitButton = new QPushButton(OutroWidget);
         exitButton->setObjectName("exitButton");
-        exitButton->setGeometry(QRect(840, 20, 120, 70));
+        exitButton->setGeometry(QRect(840, 20, 120, 50));
         QFont font4;
         font4.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font4.setPointSize(16);
@@ -86,12 +87,17 @@ public:
         font5.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font5.setPointSize(25);
         featureBox->setFont(font5);
+        featureBox->setStyleSheet(QString::fromUtf8(""));
         featureBox->setEditable(false);
         gamemodeExplanation = new QLabel(OutroWidget);
         gamemodeExplanation->setObjectName("gamemodeExplanation");
         gamemodeExplanation->setGeometry(QRect(210, 470, 580, 60));
         gamemodeExplanation->setFont(font4);
         gamemodeExplanation->setAlignment(Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
+        muteSwitch = new QPushButton(OutroWidget);
+        muteSwitch->setObjectName("muteSwitch");
+        muteSwitch->setGeometry(QRect(120, 20, 50, 50));
+        muteSwitch->setIconSize(QSize(40, 40));
 
         retranslateUi(OutroWidget);
 
@@ -108,6 +114,7 @@ public:
         avgTime->setText(QCoreApplication::translate("OutroWidget", "\345\271\263\345\235\207\347\255\224\351\241\214\346\231\202\351\226\223\357\274\232this s", nullptr));
         exitButton->setText(QCoreApplication::translate("OutroWidget", "\351\200\200\345\207\272", nullptr));
         gamemodeExplanation->setText(QCoreApplication::translate("OutroWidget", "TextLabel", nullptr));
+        muteSwitch->setText(QString());
     } // retranslateUi
 
 };

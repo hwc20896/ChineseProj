@@ -16,6 +16,14 @@ QuestionManagement::QuestionManagement(const std::vector<QuestionTemplate::Multi
         timeLimit -= 1000;
         TimeTick();
     });
+
+    muted.addFile(":/Drawables/drawables/mute_unpressed.png",QSize(50,50),QIcon::Normal);
+    muted.addFile(":/Drawables/drawables/mute_pressed.png",QSize(50,50),QIcon::Active);
+    unmuted.addFile(":/Drawables/drawables/unmute_unpressed.png",QSize(50,50),QIcon::Normal);
+    unmuted.addFile(":/Drawables/drawables/unmute_pressed.png",QSize(50,50),QIcon::Active);
+
+    out = new QAudioOutput;
+    out->setVolume(.15);
     for (size_t i=0; i<this->displayCount;i++){
         QuestionWidget::MultipleChoice* page = new QuestionWidget::MultipleChoice(order[i],i);
         this->addWidget(page);
@@ -44,6 +52,10 @@ QuestionManagement::QuestionManagement(const std::vector<QuestionTemplate::Multi
                 timeStamp.push_back(timeLapsed);
             }
         });
+        connect(page->ui->muteState,BUTTONCLICK,this,[=]{
+            isMuted = !isMuted;
+            UpdateMute();
+        });
     }
     this->setCurrentIndex(0);
     UpdatePages();
@@ -54,8 +66,6 @@ QuestionManagement::QuestionManagement(const std::vector<QuestionTemplate::Multi
         TimeTick();
     }
 
-    out = new QAudioOutput;
-    out->setVolume(.15);
     bgm = new QMediaPlayer();
     bgm->setAudioOutput(out);
     bgm->setSource(QUrl("qrc:/BGM/OMFG_Pizza.mp3"));
@@ -89,3 +99,9 @@ void QuestionManagement::TimeTick(){
         else i->ui->timerDisplay->setText(QString("Time left: <font color=\"#ff0000\">%1:%2</font>").arg(floor(TODOUBLE(timeLimit)/countdownTime)).arg(sec%60 < 10 ? QString("0%1").arg(sec%60) : QString::number(sec%60)));
     }
 }
+
+void QuestionManagement::UpdateMute(){
+    out->setMuted(isMuted);
+    for (auto i : pageList) i->ui->muteState->setIcon(isMuted?muted:unmuted);
+}
+

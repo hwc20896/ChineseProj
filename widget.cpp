@@ -2,15 +2,38 @@
 #include "QuestionList.h"
 #include <QApplication>
 
-IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::IntroWidget){intro_form->setupUi(this);}
+IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::IntroWidget){
+    intro_form->setupUi(this);
+    muted.addFile(":/Drawables/drawables/mute_unpressed.png",QSize(),QIcon::Normal);
+    muted.addFile(":/Drawables/drawables/mute_pressed.png",QSize(),QIcon::Active);
+    unmuted.addFile(":/Drawables/drawables/unmute_unpressed.png",QSize(),QIcon::Normal);
+    unmuted.addFile(":/Drawables/drawables/unmute_pressed.png",QSize(),QIcon::Active);
+    connect(intro_form->muteSwitch,BUTTONCLICK,this,[=]{
+        isMuted = !isMuted;
+        SetMute(isMuted);
+    });
+    SetMute(isMuted);
+}
+
+void IntroWidget::SetMute(bool isMuted){intro_form->muteSwitch->setIcon(isMuted?muted:unmuted);}
 
 RuleWidget::RuleWidget(QWidget* parent) : QWidget(parent), rule_form(new Ui::RuleWidget){rule_form->setupUi(this);}
 
 OutroWidget::OutroWidget(QWidget* parent) : QWidget(parent), ui(new Ui::OutroWidget){
     ui->setupUi(this);
+    muted.addFile(":/Drawables/drawables/mute_unpressed.png",QSize(50,50),QIcon::Normal);
+    muted.addFile(":/Drawables/drawables/mute_pressed.png",QSize(50,50),QIcon::Active);
+    unmuted.addFile(":/Drawables/drawables/unmute_unpressed.png",QSize(50,50),QIcon::Normal);
+    unmuted.addFile(":/Drawables/drawables/unmute_pressed.png",QSize(50,50),QIcon::Active);
     connect(ui->replayButton,BUTTONCLICK,this,&OutroWidget::Replay);
     connect(ui->exitButton,BUTTONCLICK,this,&QApplication::quit);
+    connect(ui->muteSwitch,BUTTONCLICK,this,[=]{
+        isMuted = !isMuted;
+        SetMute(isMuted);
+    });
 }
+
+void OutroWidget::SetMute(bool isMuted){ui->muteSwitch->setIcon(isMuted?muted:unmuted);}
 
 Widget::Widget(QWidget* parent) : QStackedWidget(parent){
     this->resize(1000,700);
@@ -49,6 +72,8 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
 void Widget::startGame(){
     currentGameMode = intro->intro_form->featureBox->currentIndex();
     mng = new QuestionManagement(questionList,5,currentGameMode);
+    mng->isMuted = intro->isMuted;
+    mng->UpdateMute();
     this->close();
     mng->show();
     connect(mng,&QuestionManagement::GameFinish,this,&Widget::outroCall);
@@ -72,11 +97,14 @@ void Widget::outroCall(){
         out->ui->totalTime->setVisible(false);
         out->ui->avgTime->setVisible(false);
     }
-
+    out->isMuted = mng->isMuted;
+    out->SetMute(out->isMuted);
     out->show();
     connect(out,&OutroWidget::Replay,this,[=]{
         currentGameMode = out->ui->featureBox->currentIndex();
         mng = new QuestionManagement(questionList,5,currentGameMode);
+        mng->isMuted = out->isMuted;
+        mng->UpdateMute();
         out->close();
         mng->show();
         connect(mng,&QuestionManagement::GameFinish,this,&Widget::outroCall);

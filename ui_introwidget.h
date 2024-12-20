@@ -26,6 +26,7 @@ public:
     QPushButton *startGame;
     QComboBox *featureBox;
     QLabel *gamemodeExplanation;
+    QPushButton *muteSwitch;
 
     void setupUi(QWidget *IntroWidget)
     {
@@ -42,10 +43,10 @@ public:
         gameTitle->setAlignment(Qt::AlignmentFlag::AlignCenter);
         rule = new QPushButton(IntroWidget);
         rule->setObjectName("rule");
-        rule->setGeometry(QRect(670, 10, 171, 71));
+        rule->setGeometry(QRect(670, 10, 170, 50));
         QFont font1;
         font1.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
-        font1.setPointSize(16);
+        font1.setPointSize(20);
         rule->setFont(font1);
         startGame = new QPushButton(IntroWidget);
         startGame->setObjectName("startGame");
@@ -61,13 +62,20 @@ public:
         font3.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font3.setPointSize(25);
         featureBox->setFont(font3);
-        featureBox->setStyleSheet(QString::fromUtf8("text-align: center;"));
+        featureBox->setStyleSheet(QString::fromUtf8(""));
         featureBox->setCurrentText(QString::fromUtf8(""));
         gamemodeExplanation = new QLabel(IntroWidget);
         gamemodeExplanation->setObjectName("gamemodeExplanation");
         gamemodeExplanation->setGeometry(QRect(210, 430, 580, 61));
-        gamemodeExplanation->setFont(font1);
+        QFont font4;
+        font4.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
+        font4.setPointSize(16);
+        gamemodeExplanation->setFont(font4);
         gamemodeExplanation->setAlignment(Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
+        muteSwitch = new QPushButton(IntroWidget);
+        muteSwitch->setObjectName("muteSwitch");
+        muteSwitch->setGeometry(QRect(230, 10, 50, 50));
+        muteSwitch->setIconSize(QSize(40, 40));
 
         retranslateUi(IntroWidget);
 
@@ -81,6 +89,7 @@ public:
         rule->setText(QCoreApplication::translate("IntroWidget", "\350\246\217\345\211\207", nullptr));
         startGame->setText(QCoreApplication::translate("IntroWidget", "\351\226\213\345\247\213\346\270\270\346\210\262", nullptr));
         gamemodeExplanation->setText(QCoreApplication::translate("IntroWidget", "TextLabel", nullptr));
+        muteSwitch->setText(QString());
     } // retranslateUi
 
 };

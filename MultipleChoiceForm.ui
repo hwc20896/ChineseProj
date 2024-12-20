@@ -167,7 +167,7 @@
   <widget class="QLabel" name="correctState">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>150</x>
      <y>10</y>
      <width>190</width>
      <height>50</height>
@@ -228,6 +228,25 @@
    </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="muteState">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>10</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>40</width>
+     <height>40</height>
+    </size>
    </property>
   </widget>
  </widget>

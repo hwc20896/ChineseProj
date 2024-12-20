@@ -30,6 +30,7 @@ public:
     QLabel *correctState;
     QLabel *progress;
     QLabel *timerDisplay;
+    QPushButton *muteState;
 
     void setupUi(QWidget *MultipleChoice)
     {
@@ -78,7 +79,7 @@ public:
         nextQuestion->setFont(font1);
         correctState = new QLabel(MultipleChoice);
         correctState->setObjectName("correctState");
-        correctState->setGeometry(QRect(200, 10, 190, 50));
+        correctState->setGeometry(QRect(150, 10, 190, 50));
         QFont font2;
         font2.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font2.setPointSize(16);
@@ -94,6 +95,10 @@ public:
         timerDisplay->setGeometry(QRect(500, 10, 220, 50));
         timerDisplay->setFont(font2);
         timerDisplay->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        muteState = new QPushButton(MultipleChoice);
+        muteState->setObjectName("muteState");
+        muteState->setGeometry(QRect(380, 10, 50, 50));
+        muteState->setIconSize(QSize(40, 40));
 
         retranslateUi(MultipleChoice);
 
@@ -113,6 +118,7 @@ public:
         correctState->setText(QCoreApplication::translate("MultipleChoice", "TextLabel", nullptr));
         progress->setText(QCoreApplication::translate("MultipleChoice", "TextLabel", nullptr));
         timerDisplay->setText(QCoreApplication::translate("MultipleChoice", "TextLabel", nullptr));
+        muteState->setText(QString());
     } // retranslateUi
 
 };

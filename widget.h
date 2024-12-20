@@ -13,6 +13,10 @@ class IntroWidget : public QWidget{
     public:
         IntroWidget(QWidget* parent = 0);
         Ui::IntroWidget* intro_form;
+        bool isMuted = false;
+    private:
+        QIcon muted, unmuted;
+        void SetMute(bool isMuted);
 };
 
 class RuleWidget : public QWidget{
@@ -35,7 +39,6 @@ class Widget : public QStackedWidget{
         QuestionManagement* mng;
         QStringList featureList;
         QStringList modeExplanation;
-
         IntroWidget* intro;
         int currentGameMode = 0;
 };
@@ -45,6 +48,10 @@ class OutroWidget : public QWidget{
     public:
         OutroWidget(QWidget* parent = 0);
         Ui::OutroWidget* ui;
+        bool isMuted;
+        void SetMute(bool isMuted);
+    private:
+        QIcon muted, unmuted;
     signals:
         void Replay();
 };
