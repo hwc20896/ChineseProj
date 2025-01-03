@@ -63,6 +63,7 @@ public:
         font3.setPointSize(25);
         featureBox->setFont(font3);
         featureBox->setStyleSheet(QString::fromUtf8(""));
+        featureBox->setEditable(false);
         featureBox->setCurrentText(QString::fromUtf8(""));
         gamemodeExplanation = new QLabel(IntroWidget);
         gamemodeExplanation->setObjectName("gamemodeExplanation");

@@ -91,6 +91,9 @@
    <property name="styleSheet">
     <string notr="true"/>
    </property>
+   <property name="editable">
+    <bool>false</bool>
+   </property>
    <property name="currentText">
     <string notr="true"/>
    </property>

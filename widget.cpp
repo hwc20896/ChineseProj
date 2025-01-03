@@ -1,6 +1,7 @@
 #include "widget.h"
 #include "QuestionList.h"
 #include <QApplication>
+#include <QLineEdit>
 
 IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::IntroWidget){
     intro_form->setupUi(this);
