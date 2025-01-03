@@ -15,10 +15,8 @@ QuestionWidget::MultipleChoice::MultipleChoice(QuestionTemplate::MultipleChoice*
     for (size_t i = 0; i < OptiontoButton.size(); i++){
         auto tar = OptiontoButton.begin();
         std::advance(tar,i);
-        if (!question->Options[i].isEmpty()){
-            tar->second->setEnabled(true);
-            tar->second->setText(question->Options[i]);
-        }
+        if (!question->Options[i].isEmpty()) tar->second->setText(question->Options[i]);
+        else tar->second->setVisible(false);
         connect(tar->second,&QPushButton::clicked,this,[=]{AnswerCheck(tar->first);});
     }
     corrSound = new QSoundEffect;
