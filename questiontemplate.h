@@ -3,7 +3,7 @@
 #define QUESTIONTEMPLATE
 #include <QWidget>
 #include <QString>
-#include <array>
+#include <vector>
 #include <map>
 #include <QPushButton>
 #include <QSoundEffect>
@@ -24,13 +24,12 @@ namespace QuestionWidget{
 class MultipleChoice;
 }
 
-enum Option{A,B,C,D};
 
 struct QuestionTemplate::MultipleChoice{
-    MultipleChoice(QString questiontitle, const std::array<QString, 4>& options, Option corroption) : QuestionTitle(questiontitle), Options(options), CorrOption(corroption){}
+    MultipleChoice(QString questiontitle, const std::vector<QString>& options, int corroption) : QuestionTitle(questiontitle), Options(options), CorrOption(corroption){assert(options.size() <= 4);}
     QString QuestionTitle;
-    std::array<QString, 4> Options;
-    Option CorrOption;
+    std::vector<QString> Options;
+    int CorrOption;
 };
 
 class QuestionWidget::MultipleChoice : public QWidget{
@@ -43,8 +42,10 @@ class QuestionWidget::MultipleChoice : public QWidget{
         inline void SetProgress(int CurrentProgress, int Total){ui->progress->setText(QString("進度：%1 / %2 - %3%").arg(CurrentProgress).arg(Total).arg(TODOUBLE(CurrentProgress) / TODOUBLE(Total) * 100));}
     private:
         QuestionTemplate::MultipleChoice* question;
-        std::map<Option, QPushButton*> OptiontoButton;
-        void AnswerCheck(Option option);
+        QString corrText;
+        std::map<QString,QPushButton*> textToButton;
+
+        void AnswerCheck(QPushButton* targetButton);
         void Cooldown(int msec);
         size_t Index = 0;
         bool Answered = false;

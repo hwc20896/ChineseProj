@@ -1,6 +1,9 @@
 #include "questiontemplate.h"
 #include <QEventLoop>
 #include <QTimer>
+#include <algorithm>
+#include <random>
+#include <tuple>
 
 #define SETCOLOR(col) setStyleSheet(QString("background-color: %1;").arg(col))
 #define SETCHOSEN SETCOLOR("#6d7dff")
@@ -10,15 +13,23 @@
 QuestionWidget::MultipleChoice::MultipleChoice(QuestionTemplate::MultipleChoice* question, size_t Index, QWidget* parent) : QWidget(parent), ui(new Ui::MultipleChoice), question(question), Index(Index){
     ui->setupUi(this);
     Answered = false;
-    OptiontoButton = {{Option::A,ui->optionA},{Option::B,ui->optionB},{Option::C,ui->optionC},{Option::D,ui->optionD}};
-    ui->questionTitle->setText(question->QuestionTitle);
-    for (size_t i = 0; i < OptiontoButton.size(); i++){
-        auto tar = OptiontoButton.begin();
-        std::advance(tar,i);
-        if (!question->Options[i].isEmpty()) tar->second->setText(question->Options[i]);
-        else tar->second->setVisible(false);
-        connect(tar->second,&QPushButton::clicked,this,[=]{AnswerCheck(tar->first);});
+    corrText = this->question->Options[this->question->CorrOption];
+    std::mt19937 mt((std::random_device()()));
+    std::shuffle(this->question->Options.begin(),this->question->Options.end(),mt);
+    std::array<QPushButton*,4> linker_array = {ui->optionA,ui->optionB,ui->optionC,ui->optionD};
+    for (auto i : linker_array) i->setVisible(false);
+    for (auto [option,button] = std::tuple{this->question->Options.begin(),linker_array.begin()};option != this->question->Options.end(); option++, button++) {
+        if (!option->isEmpty()){
+            auto targetButton = *button;
+            targetButton->setVisible(true);
+            textToButton.insert({*option,targetButton});
+            (*button)->setText(*option);
+            connect(*button,BUTTONCLICK,this,[=]{AnswerCheck(targetButton);});
+        }
     }
+
+    ui->questionTitle->setText(question->QuestionTitle);
+
     corrSound = new QSoundEffect;
     corrSound->setSource({"qrc:/SoundEffects/bingo.wav"});
     incorrSound = new QSoundEffect;
@@ -27,21 +38,21 @@ QuestionWidget::MultipleChoice::MultipleChoice(QuestionTemplate::MultipleChoice*
 
 QuestionWidget::MultipleChoice::~MultipleChoice(){delete ui;}
 
-void QuestionWidget::MultipleChoice::AnswerCheck(Option option){
+void QuestionWidget::MultipleChoice::AnswerCheck(QPushButton* targetButton){
     if (!Answered){
         Answered = true;
         emit TimeTap();
-        bool Corr = option == question->CorrOption;
+        bool Corr = targetButton->text() == this->corrText;
         Cooldown(800);
         if (Corr){
-            OptiontoButton[option]->SETRIGHT;
+            targetButton->SETRIGHT;
             corrSound->play();
         }
         else{
-            OptiontoButton[option]->SETWRONG;
+            targetButton->SETWRONG;
             incorrSound->play();
             Cooldown(500);
-            OptiontoButton[question->CorrOption]->SETRIGHT;
+            textToButton[corrText]->SETRIGHT;
         }
         Cooldown(700);
         emit Score(Corr);
