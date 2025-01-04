@@ -65,7 +65,7 @@
      <x>210</x>
      <y>140</y>
      <width>580</width>
-     <height>60</height>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
@@ -75,7 +75,7 @@
     </font>
    </property>
    <property name="text">
-    <string>你的得分為：this / that</string>
+    <string>你的得分為：this / that：thisat%</string>
    </property>
    <property name="textFormat">
     <enum>Qt::TextFormat::MarkdownText</enum>

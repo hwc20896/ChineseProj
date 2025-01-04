@@ -56,7 +56,7 @@ public:
         replayButton->setFont(font2);
         score = new QLabel(OutroWidget);
         score->setObjectName("score");
-        score->setGeometry(QRect(210, 140, 580, 60));
+        score->setGeometry(QRect(210, 140, 580, 51));
         QFont font3;
         font3.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font3.setPointSize(18);
@@ -109,7 +109,7 @@ public:
         OutroWidget->setWindowTitle(QCoreApplication::translate("OutroWidget", "Form", nullptr));
         title->setText(QCoreApplication::translate("OutroWidget", "\346\204\237\350\254\235\346\270\270\347\216\251", nullptr));
         replayButton->setText(QCoreApplication::translate("OutroWidget", "\351\207\215\347\216\251", nullptr));
-        score->setText(QCoreApplication::translate("OutroWidget", "\344\275\240\347\232\204\345\276\227\345\210\206\347\202\272\357\274\232this / that", nullptr));
+        score->setText(QCoreApplication::translate("OutroWidget", "\344\275\240\347\232\204\345\276\227\345\210\206\347\202\272\357\274\232this / that\357\274\232thisat%", nullptr));
         totalTime->setText(QCoreApplication::translate("OutroWidget", "\347\270\275\347\255\224\351\241\214\346\231\202\351\226\223\357\274\232this s", nullptr));
         avgTime->setText(QCoreApplication::translate("OutroWidget", "\345\271\263\345\235\207\347\255\224\351\241\214\346\231\202\351\226\223\357\274\232this s", nullptr));
         exitButton->setText(QCoreApplication::translate("OutroWidget", "\351\200\200\345\207\272", nullptr));

@@ -89,7 +89,7 @@ void Widget::outroCall(){
     out->ui->featureBox->setCurrentIndex(currentGameMode);
     out->ui->gamemodeExplanation->setText(modeExplanation[currentGameMode]);
     connect(out->ui->featureBox, &QComboBox::currentIndexChanged,this,[=](int index){out->ui->gamemodeExplanation->setText(modeExplanation[index]);});
-    out->ui->score->setText(QString("你的得分為：%1 / %2").arg(AddColor(mng->Corr,mng->displayCount)).arg(mng->displayCount));
+    out->ui->score->setText(QString("你的得分為：%1 / %2：%3%").arg(AddColor(mng->Corr,mng->displayCount)).arg(mng->displayCount).arg(TODOUBLE(mng->Corr)/TODOUBLE(mng->displayCount)*100));
     if (currentGameMode == 0){
         out->ui->totalTime->setText(QString("總答題時間：%1").arg(TimeDisplay(totaltime)));
         out->ui->avgTime->setText(QString("平均答題時間：%1").arg(TimeDisplay(totaltime / mng->displayCount)));
