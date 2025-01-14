@@ -18,14 +18,12 @@ QuestionWidget::MultipleChoice::MultipleChoice(QuestionTemplate::MultipleChoice*
     std::shuffle(this->question->Options.begin(),this->question->Options.end(),mt);
     std::array<QPushButton*,4> linker_array = {ui->optionA,ui->optionB,ui->optionC,ui->optionD};
     for (auto i : linker_array) i->setVisible(false);
-    for (auto [option,button] = std::tuple{this->question->Options.begin(),linker_array.begin()};option != this->question->Options.end(); option++, button++) {
-        if (!option->isEmpty()){
-            auto targetButton = *button;
-            targetButton->setVisible(true);
-            textToButton.insert({*option,targetButton});
-            (*button)->setText(*option);
-            connect(*button,BUTTONCLICK,this,[=]{AnswerCheck(targetButton);});
-        }
+    for (auto [option,button] = std::tuple{this->question->Options.begin(),linker_array.begin()}; option != this->question->Options.end(); option++, button++) if (!option->isEmpty()){
+        auto targetButton = *button;
+        targetButton->setVisible(true);
+        textToButton.insert({*option,targetButton});
+        targetButton->setText(*option);
+        connect(targetButton,BUTTONCLICK,this,[=]{AnswerCheck(targetButton);});
     }
 
     ui->questionTitle->setText(question->QuestionTitle);
