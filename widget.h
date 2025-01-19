@@ -6,6 +6,8 @@
 #include "ui_outrowidget.h"
 #include "ui_rulewidget.h"
 #include <vector>
+#include <QList>
+#include <QJsonDocument>
 #include "questionmanagement.h"
 
 class IntroWidget : public QWidget{
@@ -35,7 +37,7 @@ class Widget : public QStackedWidget{
         void outroCall();
         QString AddColor(int Corr, size_t Count);
         QString TimeDisplay(double time);
-        std::vector<QuestionTemplate::MultipleChoice*> questionList;
+        QList<QuestionTemplate::MultipleChoice> questionList;
         QuestionManagement* mng;
         QStringList featureList;
         QStringList modeExplanation;
@@ -56,6 +58,8 @@ class OutroWidget : public QWidget{
         void Replay();
 };
 
-
+namespace Json{
+template <class T> QList<T> deserializeArray(const QString& jsonString);
+}
 
 #endif // WIDGET_H

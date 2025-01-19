@@ -3,10 +3,12 @@
 #define QUESTIONTEMPLATE
 #include <QWidget>
 #include <QString>
-#include <vector>
 #include <map>
 #include <QPushButton>
 #include <QSoundEffect>
+
+#include <QJsonArray>
+#include <QJsonObject>
 #include "ui_multiplechoiceform.h"
 
 #define Functions
@@ -24,24 +26,24 @@ namespace QuestionWidget{
 class MultipleChoice;
 }
 
-
 struct QuestionTemplate::MultipleChoice{
-    MultipleChoice(QString questiontitle, const std::vector<QString>& options, int corroption) : QuestionTitle(questiontitle), Options(options), CorrOption(corroption){assert(options.size() <= 4);}
+    explicit MultipleChoice(QString questiontitle, const QStringList& options, int corroption) : QuestionTitle(questiontitle), Options(options), CorrOption(corroption){assert(options.size() <= 4);}
+    explicit MultipleChoice(QJsonObject jsonObject) : MultipleChoice(jsonObject.value("questiontitle").toString(),jsonObject.value("options").toVariant().toStringList(), jsonObject.value("corroption").toInt()){}
     QString QuestionTitle;
-    std::vector<QString> Options;
+    QStringList Options;
     int CorrOption;
 };
 
 class QuestionWidget::MultipleChoice : public QWidget{
     Q_OBJECT
     public:
-        MultipleChoice(QuestionTemplate::MultipleChoice* question, size_t Index, QWidget* parent = 0);
+        MultipleChoice(QuestionTemplate::MultipleChoice question, size_t Index, QWidget* parent = 0);
         ~MultipleChoice();
         Ui::MultipleChoice* ui;
         inline void SetScore(int Corr, int Incorr){ui->correctState->setText(QString("<font color=\"#ff0000\">錯誤數 %1</font> | <font color=\"#00dd12\">%2 正確數</font>").arg(Incorr).arg(Corr));}
         inline void SetProgress(int CurrentProgress, int Total){ui->progress->setText(QString("進度：%1 / %2 - %3%").arg(CurrentProgress).arg(Total).arg(TODOUBLE(CurrentProgress) / TODOUBLE(Total) * 100));}
     private:
-        QuestionTemplate::MultipleChoice* question;
+        QuestionTemplate::MultipleChoice question;
         QString corrText;
         std::map<QString,QPushButton*> textToButton;
 

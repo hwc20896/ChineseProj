@@ -2,7 +2,7 @@
 #ifndef QUESTIONMANAGEMENT
 #define QUESTIONMANAGEMENT
 #include <QStackedWidget>
-#include <vector>
+#include <QList>
 #include <QMediaPlayer>
 #include <QAudioOutput>
 #include <QSoundEffect>
@@ -12,15 +12,13 @@
 #include "questiontemplate.h"
 using namespace std::chrono;
 
-#define PrivateInsidePrivate
-
 class QuestionManagement : public QStackedWidget{
     Q_OBJECT
     public:
-        QuestionManagement(const std::vector<QuestionTemplate::MultipleChoice*>& questionList, size_t displayCount, int Mode,QWidget* parent = 0);
+        QuestionManagement(const QList<QuestionTemplate::MultipleChoice>& questionList, int64_t displayCount, int Mode,QWidget* parent = 0);
         ~QuestionManagement();
-        std::vector<long long> timeStamp;
-        size_t displayCount;
+        QList<int64_t> timeStamp;
+        int64_t displayCount;
         int Corr = 0;
 
         //  Mute Switch
@@ -28,11 +26,11 @@ class QuestionManagement : public QStackedWidget{
         bool isMuted;
         void UpdateMute();
     private:
-        std::vector<QuestionTemplate::MultipleChoice*> questionList;
-        std::vector<QuestionWidget::MultipleChoice*> pageList;
-        std::vector<QuestionTemplate::MultipleChoice*> GetRandomOrder(std::vector<QuestionTemplate::MultipleChoice*> Questions, size_t Quantity);
+        QList<QuestionTemplate::MultipleChoice> questionList;
+        QList<QuestionWidget::MultipleChoice*> pageList;
+        QList<QuestionTemplate::MultipleChoice> GetRandomOrder(QList<QuestionTemplate::MultipleChoice> Questions, int64_t Quantity);
         void UpdatePages();
-        std::vector<int> range(int Lim);
+        QList<int> range(int Lim);
         int Incorr=0;
         int CurrentIndex=0;
         int Mode = 0;

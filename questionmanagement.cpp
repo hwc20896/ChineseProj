@@ -3,7 +3,7 @@
 #include <random>
 #define TIMERUNSOUT &QTimer::timeout
 
-QuestionManagement::QuestionManagement(const std::vector<QuestionTemplate::MultipleChoice*>& questionList, size_t displayCount, int Mode, QWidget* parent) : QStackedWidget(parent), displayCount(displayCount), questionList(questionList), Mode(Mode){
+QuestionManagement::QuestionManagement(const QList<QuestionTemplate::MultipleChoice>& questionList, int64_t displayCount, int Mode, QWidget* parent) : QStackedWidget(parent), displayCount(displayCount), questionList(questionList), Mode(Mode){
     this->resize(1000,700);
     if (questionList.size() < this->displayCount) throw std::out_of_range("Cannot assign, Question too few");
     auto order = GetRandomOrder(questionList, this->displayCount);
@@ -24,7 +24,7 @@ QuestionManagement::QuestionManagement(const std::vector<QuestionTemplate::Multi
 
     out = new QAudioOutput;
     out->setVolume(.15);
-    for (size_t i=0; i<this->displayCount;i++){
+    for (int64_t i=0; i<this->displayCount;i++){
         QuestionWidget::MultipleChoice* page = new QuestionWidget::MultipleChoice(order[i],i);
         this->addWidget(page);
         pageList.push_back(page);
@@ -80,9 +80,9 @@ QuestionManagement::~QuestionManagement(){
     delete bgm;
 }
 
-std::vector<QuestionTemplate::MultipleChoice*> QuestionManagement::GetRandomOrder(std::vector<QuestionTemplate::MultipleChoice*> Questions, size_t Quantity){
+QList<QuestionTemplate::MultipleChoice> QuestionManagement::GetRandomOrder(QList<QuestionTemplate::MultipleChoice> Questions, int64_t Quantity){
     std::shuffle(Questions.begin(),Questions.end(),std::mt19937_64(time(0)));
-    return std::vector<QuestionTemplate::MultipleChoice*>(Questions.begin(), Questions.begin() + Quantity);
+    return QList<QuestionTemplate::MultipleChoice>(Questions.begin(), Questions.begin() + Quantity);
 }
 
 void QuestionManagement::UpdatePages(){

@@ -1,7 +1,10 @@
 #include "widget.h"
-#include "QuestionList.h"
 #include <QApplication>
 #include <QLineEdit>
+#include <QFile>
+#include <QTextStream>
+#include <QDir>
+#include <QFileInfo>
 
 IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::IntroWidget){
     intro_form->setupUi(this);
@@ -43,19 +46,17 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
     RuleWidget* rule = new RuleWidget;
     this->addWidget(rule);
     this->setCurrentIndex(currentGameMode);
-    using namespace QuestionList;
-    questionList = {
-        Q001, Q002, Q003, Q004, Q005, Q006, Q007, Q008, Q009, Q010,
-        Q011, Q012, Q013, Q014, Q015, Q016, Q017, Q018, Q019, Q020,
-        Q021, Q022, Q023, Q024, Q025, Q026, Q027, Q028, Q029, Q030,
-        Q031, Q032, Q033, Q034, Q035, Q036, Q037, Q038, Q039, Q040,
-        Q041, Q042, Q043, Q044, Q045, Q046, Q047, Q048, Q049, Q050,
-        Q051, Q052, Q053, Q054, Q055, Q056, Q057, Q058, Q059, Q060,
-        Q061, Q062, Q063, Q064, Q065, Q066, Q067, Q068, Q069, Q070,
-        Q071, Q072, Q073, Q074, Q075, Q076, Q077, Q078, Q079, Q080,
-        Q081, Q082, Q083, Q084, Q085, Q086, Q087, Q088, Q089, Q090,
-        Q091, Q092, Q093, Q094, Q095, Q096, Q097, Q098, Q099, Q100
-    };
+
+    QFile file(QString("%1/QuestionList.json").arg(QDir::currentPath()));
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        qWarning() << "Couldn't find QuestionList.json. Game softlocked";
+        intro->intro_form->startGame->setEnabled(false);
+    }
+
+    QString jsonContext = QTextStream(&file).readAll();
+    file.close();
+    questionList = Json::deserializeArray<QuestionTemplate::MultipleChoice>(jsonContext);
+
     featureList = {"普通","限時"};
     modeExplanation = {
         "普通模式：不限時，結尾顯示答題時間及平均每題時間",
@@ -135,4 +136,17 @@ QString Widget::TimeDisplay(double timeInput){
     else if (timeInput == 6e4) return "1分鐘";
     else if (timeInput >= 0) return QString("%1秒").arg(QString::number(timeInput/1000.0,'g',3));
     else throw std::range_error("Invalid duration");
+}
+
+template <class T> QList<T> Json::deserializeArray(const QString& jsonString){
+    QList<T> items;
+    QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
+    if (doc.isArray()){
+        QJsonArray arr = doc.array();
+        for (const QJsonValue& val : arr){
+            T i = T(val.toObject());
+            items.push_back(i);
+        }
+    }
+    return items;
 }
