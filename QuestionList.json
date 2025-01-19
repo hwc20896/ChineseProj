@@ -348,5 +348,155 @@
         "questiontitle": "\"弱冠\"指的是男子多少歲？",
         "options": ["十五歲","二十歲"],
         "corroption": 1
+    },
+    {
+        "questiontitle": "\"入木三分\"這個成語原本是用來形容什麼的？",
+        "options": ["文章","書法"],
+        "corroption": 1
+    },
+    {
+        "questiontitle": "河姆渡遺址位於：",
+        "options": ["黃河流域","長江流域","兩河流域","尼羅河流域"],
+        "corroption": 1
+    },
+    {
+        "questiontitle": "《詩經》是我國第一部詩歌總集，\n《詩經》裡面包括多少首詩？",
+        "options": ["二百九十五首","三百首","三百零五首"],
+        "corroption": 2
+    },
+    {
+        "questiontitle": "《孫子兵法》的作者是：",
+        "options": ["孫武","孫臏","孫子"],
+        "corroption": 0
+    },
+    {
+        "questiontitle":"算盤是中國傳統計算工具，\n利用算盤能進行開平方的運算嗎？",
+        "options": ["能","不能"],
+        "corroption":0
+    },
+    {
+        "questiontitle":"下面哪個成語與秦始皇有關？",
+        "options":["指鹿為馬","奇貨可居","圖窮匕見"],
+        "corroption":2
+    },
+    {
+        "questiontitle":"唱念做打是中國戲曲表演的四種藝術手段，\n也是戲曲表演的四項基本功，其中\"做\"指的是：",
+        "options":["面部表情","舞蹈動作","器械表演"],
+        "corroption":1
+    },
+    {
+        "questiontitle":"\"海上生明月，天涯共此時\"是誰的名句？",
+        "options":["王勃","張九齡"],
+        "corroption":1
+    },
+    {
+        "questiontitle":"李清照詞中的\"綠肥紅瘦\"描寫的\n是什麼季節的景色？",
+        "options":["春","夏","秋","冬"],
+        "corroption":0
+    },
+    {
+        "questiontitle":"成語\"機不可失\"出自張九齡之筆，\n它的下句是：",
+        "options":["時不再來","失不再來"],
+        "corroption":0
+    },
+    {
+        "questiontitle":"\"烽火連三月，家書抵萬金\"\n古代書信通過郵驛傳遞。\n唐代管理這類工作的中央管理機構是：",
+        "options":["尚書省","中書省","門下省"],
+        "corroption":0
+    },
+    {
+        "questiontitle":"陝西省一塊著名的\"無字碑\"，\n它與哪位皇帝有關？",
+        "options":["秦始皇","武則天"],
+        "corroption":1
+    },
+    {
+        "questiontitle":"西湖的白堤的得名與哪位詩人有關？",
+        "options":["白居易","李白"],
+        "corroption":0
+    },
+    {
+        "questiontitle":"孟子說：\"不以規矩，不成方圓\"，\n這裡\"規矩\"的意思是：",
+        "options":["法律法度","美德善行","圓規曲尺","道德準則"],
+        "corroption":0
+    },
+    {
+        "questiontitle":"\"一琴一鶴\"所形容的是：",
+        "options":["為政清簡","平安長春","淡泊名利"],
+        "corroption":0
+    },
+    {
+        "questiontitle":"\"夕陽無限好，只是近黃昏\"是誰的詩句？",
+        "options":["李商隱","駱賓王"],
+        "corroption":0
+    },
+    {
+        "questiontitle":"《紅樓夢》是我國古代著名的\n長篇小說之一，它的別名是：",
+        "options":["《金陵記》","《石頭記》"],
+        "corroption":1
+    },
+    {
+        "questiontitle":"成語\"一衣帶水\"中的\"水\"原指：",
+        "options":["黃河","長江","淮河"],
+        "corroption":1
+    },
+    {
+        "questiontitle":"\"問世間情為何物，直教生死相許\"這句詩是誰寫的？",
+        "options":["元好問","柳永","晏殊"],
+        "corroption":0
+    },
+    {
+        "questiontitle":"孟子說：\"君子有三樂\"，\n下列哪項不在其\"三樂\"之列？",
+        "options":["父母俱存，兄弟無故","仰不愧於天，俯不作於人","鄉人無不稱其善也","得天下英才而教育之"],
+        "corroption":2
+    },
+    {
+        "questiontitle":"中國歷史上被譽為\"藥王\"的是：",
+        "options":["扁鵲","華佗","孫思邈","李時珍"],
+        "corroption":2
+    },
+    {
+        "questiontitle":"張衡發明的地動儀上有幾條龍？",
+        "options":["八條","四條"],
+        "corroption":0
+    },
+    {
+        "questiontitle":"都江堰和秦始皇陵哪個的修建年代更早？",
+        "options":["都江堰","秦始皇陵"],
+        "corroption":0
+    },
+    {
+        "questiontitle":"在古代人們尊稱對方的妻子",
+        "options":["令愛","令正","令堂"],
+        "corroption":0
+    },
+    {
+        "questiontitle":"從事貿易活動的人叫做\"商人\"，\n這跟歷史上的商代有關嗎？",
+        "options":["有關","無關"],
+        "corroption":0
+    },
+    {
+        "questiontitle":"水滸一百單八將中有幾位女性？",
+        "options":["兩位","三位"],
+        "corroption":1
+    },
+    {
+        "questiontitle":"蘇軾在《念奴嬌·赤壁懷古》中提到了\n\"羽扇綸巾，談笑間，檣櫓灰飛煙滅\"，\n\"羽扇綸巾\"形容的是下面哪位歷史人物？",
+        "options":["諸葛亮","周瑜","曹操"],
+        "corroption":1
+    },
+    {
+        "questiontitle":"按照戲曲界的行話，以下哪個表示最後一出？",
+        "options":["壓軸戲","大軸戲"],
+        "corroption":1
+    },
+    {
+        "questiontitle":"成語\"請君入甕\"，\"請\"的是誰？",
+        "options":["來俊臣","周興"],
+        "corroption":1
+    },
+    {
+        "questiontitle":"琵琶本名\"批把\"，\"批把\"一詞來源於什麼？",
+        "options":["製造琵琶的材料","演奏琵琶的方式"],
+        "corroption":0
     }
 ]
