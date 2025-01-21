@@ -49,13 +49,13 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
 
     QFile file(QString("%1/QuestionList.json").arg(QDir::currentPath()));
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        qWarning() << "Couldn't find QuestionList.json. Game softlocked";
         intro->intro_form->startGame->setEnabled(false);
     }
-
-    QString jsonContext = QTextStream(&file).readAll();
-    file.close();
-    questionList = Json::deserializeArray<QuestionTemplate::MultipleChoice>(jsonContext);
+    else{
+        QString jsonContext = QTextStream(&file).readAll();
+        file.close();
+        questionList = Json::deserializeArray<QuestionTemplate::MultipleChoice>(jsonContext);
+    }
 
     featureList = {"普通","限時"};
     modeExplanation = {
