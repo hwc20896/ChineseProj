@@ -4,7 +4,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDir>
-#include <QFileInfo>
+#include <numeric>
 
 IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::IntroWidget){
     intro_form->setupUi(this);
@@ -12,7 +12,7 @@ IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::
     muted.addFile(":/Drawables/drawables/mute_pressed.png",QSize(),QIcon::Active);
     unmuted.addFile(":/Drawables/drawables/unmute_unpressed.png",QSize(),QIcon::Normal);
     unmuted.addFile(":/Drawables/drawables/unmute_pressed.png",QSize(),QIcon::Active);
-    connect(intro_form->muteSwitch,BUTTONCLICK,this,[=]{
+    connect(intro_form->muteSwitch,BUTTONCLICK,this,[=,this]{
         isMuted = !isMuted;
         SetMute(isMuted);
     });
@@ -31,7 +31,7 @@ OutroWidget::OutroWidget(QWidget* parent) : QWidget(parent), ui(new Ui::OutroWid
     unmuted.addFile(":/Drawables/drawables/unmute_pressed.png",QSize(50,50),QIcon::Active);
     connect(ui->replayButton,BUTTONCLICK,this,&OutroWidget::Replay);
     connect(ui->exitButton,BUTTONCLICK,this,&QApplication::quit);
-    connect(ui->muteSwitch,BUTTONCLICK,this,[=]{
+    connect(ui->muteSwitch,BUTTONCLICK,this,[=,this]{
         isMuted = !isMuted;
         SetMute(isMuted);
     });
@@ -66,9 +66,9 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
     intro->intro_form->featureBox->setCurrentIndex(0);
     intro->intro_form->gamemodeExplanation->setText(modeExplanation[0]);
     connect(intro->intro_form->startGame,BUTTONCLICK,this,&Widget::startGame);
-    connect(intro->intro_form->rule,BUTTONCLICK,this,[=]{this->setCurrentWidget(rule);});
-    connect(rule->rule_form->returnButton,BUTTONCLICK,this,[=]{this->setCurrentWidget(intro);});
-    connect(intro->intro_form->featureBox,&QComboBox::currentIndexChanged,this,[=](int index){intro->intro_form->gamemodeExplanation->setText(modeExplanation[index]);});
+    connect(intro->intro_form->rule,BUTTONCLICK,this,[=,this]{this->setCurrentWidget(rule);});
+    connect(rule->rule_form->returnButton,BUTTONCLICK,this,[=,this]{this->setCurrentWidget(intro);});
+    connect(intro->intro_form->featureBox,&QComboBox::currentIndexChanged,this,[=,this](int index){intro->intro_form->gamemodeExplanation->setText(modeExplanation[index]);});
 }
 
 void Widget::startGame(){
@@ -84,12 +84,11 @@ void Widget::startGame(){
 void Widget::outroCall(){
     OutroWidget* out = new OutroWidget;
     mng->close();
-    int64_t totaltime = 0;
-    for (auto i : mng->timeStamp) totaltime += i;
+    int64_t totaltime = std::accumulate(mng->timeStamp.begin(),mng->timeStamp.end(),0LL);
     out->ui->featureBox->addItems(featureList);
     out->ui->featureBox->setCurrentIndex(currentGameMode);
     out->ui->gamemodeExplanation->setText(modeExplanation[currentGameMode]);
-    connect(out->ui->featureBox, &QComboBox::currentIndexChanged,this,[=](int index){out->ui->gamemodeExplanation->setText(modeExplanation[index]);});
+    connect(out->ui->featureBox, &QComboBox::currentIndexChanged,this,[=,this](int index){out->ui->gamemodeExplanation->setText(modeExplanation[index]);});
     out->ui->score->setText(QString("你的得分為：%1 / %2：%3%").arg(AddColor(mng->Corr,mng->displayCount)).arg(mng->displayCount).arg(TODOUBLE(mng->Corr)/TODOUBLE(mng->displayCount)*100));
     if (currentGameMode == 0){
         out->ui->totalTime->setText(QString("總答題時間：%1").arg(TimeDisplay(totaltime)));
@@ -102,7 +101,7 @@ void Widget::outroCall(){
     out->isMuted = mng->isMuted;
     out->SetMute(out->isMuted);
     out->show();
-    connect(out,&OutroWidget::Replay,this,[=]{
+    connect(out,&OutroWidget::Replay,this,[=,this]{
         currentGameMode = out->ui->featureBox->currentIndex();
         mng = new QuestionManagement(questionList,5,currentGameMode);
         mng->isMuted = out->isMuted;
@@ -143,10 +142,9 @@ template <class T> QList<T> Json::deserializeArray(const QString& jsonString){
     QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
     if (doc.isArray()){
         QJsonArray arr = doc.array();
-        for (const QJsonValue& val : arr){
-            T i = T(val.toObject());
-            items.push_back(i);
-        }
+        std::ranges::for_each(arr,[&](const QJsonValue& val){
+            items.push_back(T(val.toObject()));
+        });
     }
     return items;
 }

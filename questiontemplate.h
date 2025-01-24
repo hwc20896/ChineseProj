@@ -40,8 +40,8 @@ class QuestionWidget::MultipleChoice : public QWidget{
         MultipleChoice(QuestionTemplate::MultipleChoice question, size_t Index, QWidget* parent = 0);
         ~MultipleChoice();
         Ui::MultipleChoice* ui;
-        inline void SetScore(int Corr, int Incorr){ui->correctState->setText(QString("<font color=\"#ff0000\">錯誤數 %1</font> | <font color=\"#00dd12\">%2 正確數</font>").arg(Incorr).arg(Corr));}
-        inline void SetProgress(int CurrentProgress, int Total){ui->progress->setText(QString("進度：%1 / %2 - %3%").arg(CurrentProgress).arg(Total).arg(TODOUBLE(CurrentProgress) / TODOUBLE(Total) * 100));}
+        void SetScore(int Corr, int Incorr);
+        void SetProgress(int CurrentProgress, int Total);
     private:
         QuestionTemplate::MultipleChoice question;
         QString corrText;

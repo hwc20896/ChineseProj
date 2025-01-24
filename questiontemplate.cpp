@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <random>
 #include <tuple>
+#include <ranges>
 
 #define SETCOLOR(col) setStyleSheet(QString("background-color: %1;").arg(col))
 #define SETCHOSEN SETCOLOR("#6d7dff")
@@ -15,7 +16,7 @@ QuestionWidget::MultipleChoice::MultipleChoice(QuestionTemplate::MultipleChoice 
     Answered = false;
     corrText = this->question.Options[this->question.CorrOption];
     std::mt19937 mt((std::random_device()()));
-    std::shuffle(this->question.Options.begin(),this->question.Options.end(),mt);
+    std::ranges::shuffle(this->question.Options, mt);
     std::array<QPushButton*,4> linker_array = {ui->optionA,ui->optionB,ui->optionC,ui->optionD};
     for (auto i : linker_array) i->setVisible(false);
     for (auto [option,button] = std::tuple{this->question.Options.begin(),linker_array.begin()}; option != this->question.Options.end(); option++, button++) if (!option->isEmpty()){
@@ -23,7 +24,7 @@ QuestionWidget::MultipleChoice::MultipleChoice(QuestionTemplate::MultipleChoice 
         targetButton->setVisible(true);
         textToButton.insert({*option,targetButton});
         targetButton->setText(*option);
-        connect(targetButton,BUTTONCLICK,this,[=]{AnswerCheck(targetButton);});
+        connect(targetButton,BUTTONCLICK,this,[=,this]{AnswerCheck(targetButton);});
     }
 
     ui->questionTitle->setText(question.QuestionTitle);
@@ -64,3 +65,10 @@ void QuestionWidget::MultipleChoice::Cooldown(int msec){
     lp.exec();
 }
 
+void QuestionWidget::MultipleChoice::SetScore(int Corr, int Incorr){
+    ui->correctState->setText(QString("<font color=\"#ff0000\">錯誤數 %1</font> | <font color=\"#00dd12\">%2 正確數</font>").arg(Incorr).arg(Corr));
+}
+
+void QuestionWidget::MultipleChoice::SetProgress(int CurrentProgress, int Total){
+    ui->progress->setText(QString("進度：%1 / %2 - %3%").arg(CurrentProgress).arg(Total).arg(TODOUBLE(CurrentProgress) / TODOUBLE(Total) * 100));
+}
