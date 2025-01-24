@@ -15,7 +15,6 @@ SOURCES += \
     questiontemplate.cpp
 
 HEADERS += \
-    QuestionList.h \
     widget.h \
     questionmanagement.h \
     questiontemplate.h \
