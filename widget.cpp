@@ -60,7 +60,8 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
         propertiesFile.close();
         if (propertyDoc.isObject()){
             auto property = propertyDoc.object();
-            this->setWindowTitle(property.value("title").toString());
+            title = property.value("title").toString();
+            this->setWindowTitle(title);
             defaultBGMMute = property.value("default_background_mute").toBool();
             defaultEffectMute = property.value("default_effect_mute").toBool();
             hardmodeTick = property.value("hardmode_countdown_ms").toInteger(30000);
@@ -90,6 +91,7 @@ void Widget::startGame(){
     mng->UpdateMute();
     mng->setEffectMute(defaultEffectMute);
     this->close();
+    mng->setWindowTitle(title);
     mng->show();
     connect(mng,&QuestionManagement::GameFinish,this,&Widget::outroCall);
 }
@@ -113,6 +115,7 @@ void Widget::outroCall(){
     }
     out->isMuted = mng->isMuted;
     out->SetMute(out->isMuted);
+    out->setWindowTitle(title);
     out->show();
     connect(out,&OutroWidget::Replay,this,[=,this]{
         currentGameMode = out->ui->featureBox->currentIndex();
@@ -120,6 +123,7 @@ void Widget::outroCall(){
         mng->isMuted = out->isMuted;
         mng->UpdateMute();
         out->close();
+        mng->setWindowTitle(title);
         mng->show();
         connect(mng,&QuestionManagement::GameFinish,this,&Widget::outroCall);
     });
