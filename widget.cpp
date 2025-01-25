@@ -86,7 +86,7 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
 
 void Widget::startGame(){
     currentGameMode = intro->intro_form->featureBox->currentIndex();
-    mng = new QuestionManagement(questionList,displayCount,currentGameMode);
+    mng = new QuestionManagement(questionList,displayCount,currentGameMode,hardmodeTick);
     mng->isMuted = intro->isMuted;
     mng->UpdateMute();
     mng->setEffectMute(defaultEffectMute);
@@ -119,7 +119,7 @@ void Widget::outroCall(){
     out->show();
     connect(out,&OutroWidget::Replay,this,[=,this]{
         currentGameMode = out->ui->featureBox->currentIndex();
-        mng = new QuestionManagement(questionList,5,currentGameMode);
+        mng = new QuestionManagement(questionList,displayCount,currentGameMode,hardmodeTick);
         mng->isMuted = out->isMuted;
         mng->UpdateMute();
         out->close();

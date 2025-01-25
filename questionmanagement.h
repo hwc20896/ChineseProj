@@ -47,8 +47,7 @@ class QuestionManagement : public QStackedWidget{
         //  Countdown
         QTimer* countdown,* tick;
         void TimeTick();
-        int64_t countdownTime = 6e4;
-        double timeLimit;
+        int64_t countdownTime = 30000, timeLimit;
     signals:
         void GameFinish();
 };

@@ -1,6 +1,7 @@
 {
     "title": "中華文化知識100題",
     "display_quantity": 5,
-    "default_mute": true,
-    "hardmode_countdown_ms": 60000.0
+    "default_background_mute": true,
+    "default_effect_mute": false,
+    "hardmode_countdown_ms": 60000
 }
