@@ -15,7 +15,7 @@ using namespace std::chrono;
 class QuestionManagement : public QStackedWidget{
     Q_OBJECT
     public:
-        QuestionManagement(const QList<QuestionTemplate::MultipleChoice>& questionList, int64_t displayCount, int Mode,QWidget* parent = 0);
+        QuestionManagement(const QList<QuestionTemplate::MultipleChoice>& questionList, int64_t displayCount, int Mode, int64_t countdownTime = 30000, QWidget* parent = 0);
         ~QuestionManagement();
         QList<int64_t> timeStamp;
         int64_t displayCount;
@@ -25,6 +25,7 @@ class QuestionManagement : public QStackedWidget{
         QIcon muted, unmuted;
         bool isMuted;
         void UpdateMute();
+        void setEffectMute(bool isMute);
     private:
         QList<QuestionTemplate::MultipleChoice> questionList;
         QList<QuestionWidget::MultipleChoice*> pageList;
@@ -46,7 +47,7 @@ class QuestionManagement : public QStackedWidget{
         //  Countdown
         QTimer* countdown,* tick;
         void TimeTick();
-        static constexpr double countdownTime = 6e4;
+        int64_t countdownTime = 6e4;
         double timeLimit;
     signals:
         void GameFinish();

@@ -5,7 +5,6 @@
 #include "ui_introwidget.h"
 #include "ui_outrowidget.h"
 #include "ui_rulewidget.h"
-#include <vector>
 #include <QList>
 #include <QJsonDocument>
 #include "questionmanagement.h"
@@ -16,9 +15,9 @@ class IntroWidget : public QWidget{
         IntroWidget(QWidget* parent = 0);
         Ui::IntroWidget* intro_form;
         bool isMuted = false;
+        void SetMute(bool isMuted);
     private:
         QIcon muted, unmuted;
-        void SetMute(bool isMuted);
 };
 
 class RuleWidget : public QWidget{
@@ -43,6 +42,11 @@ class Widget : public QStackedWidget{
         QStringList modeExplanation;
         IntroWidget* intro;
         int currentGameMode = 0;
+
+        bool defaultBGMMute = false;
+        bool defaultEffectMute = false;
+        int64_t hardmodeTick = 30000;
+        int64_t displayCount = 1;
 };
 
 class OutroWidget : public QWidget{

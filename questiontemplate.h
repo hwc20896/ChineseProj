@@ -40,6 +40,7 @@ class QuestionWidget::MultipleChoice : public QWidget{
         MultipleChoice(QuestionTemplate::MultipleChoice question, size_t Index, QWidget* parent = 0);
         ~MultipleChoice();
         Ui::MultipleChoice* ui;
+        QSoundEffect* corrSound,* incorrSound;
         void SetScore(int Corr, int Incorr);
         void SetProgress(int CurrentProgress, int Total);
     private:
@@ -51,7 +52,6 @@ class QuestionWidget::MultipleChoice : public QWidget{
         void Cooldown(int msec);
         size_t Index = 0;
         bool Answered = false;
-        QSoundEffect* corrSound,* incorrSound;
     signals:
         void Score(bool Corr);
         void TimeTap();

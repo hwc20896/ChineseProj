@@ -3,7 +3,7 @@
 #include <random>
 #define TIMERUNSOUT &QTimer::timeout
 
-QuestionManagement::QuestionManagement(const QList<QuestionTemplate::MultipleChoice>& questionList, int64_t displayCount, int Mode, QWidget* parent) : QStackedWidget(parent), displayCount(displayCount), questionList(questionList), Mode(Mode){
+QuestionManagement::QuestionManagement(const QList<QuestionTemplate::MultipleChoice>& questionList, int64_t displayCount, int Mode, int64_t time, QWidget* parent) : QStackedWidget(parent), displayCount(displayCount), questionList(questionList), Mode(Mode), countdownTime(time){
     this->resize(1000,700);
     if (questionList.size() < this->displayCount) throw std::out_of_range("Cannot assign, Question too few");
     auto order = GetRandomOrder(questionList, this->displayCount);
@@ -105,3 +105,9 @@ void QuestionManagement::UpdateMute(){
     std::ranges::for_each(pageList,[=,this](QuestionWidget::MultipleChoice* i){i->ui->muteState->setIcon(isMuted?muted:unmuted);});
 }
 
+void QuestionManagement::setEffectMute(bool isMute){
+    std::ranges::for_each(pageList,[=](QuestionWidget::MultipleChoice* i){
+        i->corrSound->setMuted(isMute);
+        i->incorrSound->setMuted(isMute);
+    });
+}

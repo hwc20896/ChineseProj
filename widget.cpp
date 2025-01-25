@@ -16,7 +16,6 @@ IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::
         isMuted = !isMuted;
         SetMute(isMuted);
     });
-    SetMute(isMuted);
 }
 
 void IntroWidget::SetMute(bool isMuted){intro_form->muteSwitch->setIcon(isMuted?muted:unmuted);}
@@ -47,15 +46,28 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
     this->addWidget(rule);
     this->setCurrentIndex(currentGameMode);
 
-    QFile file(QString("%1/QuestionList.json").arg(QDir::currentPath()));
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+    QFile questionFile(QString("%1/QuestionList.json").arg(QDir::currentPath()));
+    QFile propertiesFile(QString("%1/properties.json").arg(QDir::currentPath()));
+    if (!questionFile.open(QIODevice::ReadOnly | QIODevice::Text) || !propertiesFile.open(QIODevice::ReadOnly | QIODevice::Text)){
         intro->intro_form->startGame->setEnabled(false);
     }
     else{
-        QString jsonContext = QTextStream(&file).readAll();
-        file.close();
-        questionList = Json::deserializeArray<QuestionTemplate::MultipleChoice>(jsonContext);
+        QString questionContext = QTextStream(&questionFile).readAll();
+        questionFile.close();
+        questionList = Json::deserializeArray<QuestionTemplate::MultipleChoice>(questionContext);
+
+        QJsonDocument propertyDoc = QJsonDocument::fromJson(QTextStream(&propertiesFile).readAll().toUtf8());
+        propertiesFile.close();
+        if (propertyDoc.isObject()){
+            auto property = propertyDoc.object();
+            this->setWindowTitle(property.value("title").toString());
+            defaultBGMMute = property.value("default_background_mute").toBool();
+            defaultEffectMute = property.value("default_effect_mute").toBool();
+            hardmodeTick = property.value("hardmode_countdown_ms").toInteger(30000);
+            displayCount = property.value("display_quantity").toInteger(1);
+        }
     }
+    intro->SetMute(defaultBGMMute);
 
     featureList = {"普通","限時"};
     modeExplanation = {
@@ -73,9 +85,10 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
 
 void Widget::startGame(){
     currentGameMode = intro->intro_form->featureBox->currentIndex();
-    mng = new QuestionManagement(questionList,5,currentGameMode);
+    mng = new QuestionManagement(questionList,displayCount,currentGameMode);
     mng->isMuted = intro->isMuted;
     mng->UpdateMute();
+    mng->setEffectMute(defaultEffectMute);
     this->close();
     mng->show();
     connect(mng,&QuestionManagement::GameFinish,this,&Widget::outroCall);
