@@ -95,8 +95,8 @@ void QuestionManagement::UpdatePages(){
 void QuestionManagement::TimeTick(){
     int sec = timeLimit / 1000;
     std::ranges::for_each(pageList,[=,this](QuestionWidget::MultipleChoice* i){
-        if (sec >= 20)  i->ui->timerDisplay->setText(QString("Time left: %1:%2").arg(floor(TODOUBLE(timeLimit)/countdownTime)).arg(sec%60 < 10 ? QString("0%1").arg(sec%60) : QString::number(sec%60)));
-        else i->ui->timerDisplay->setText(QString("Time left: <font color=\"#ff0000\">%1:%2</font>").arg(floor(TODOUBLE(timeLimit)/countdownTime)).arg(sec%60 < 10 ? QString("0%1").arg(sec%60) : QString::number(sec%60)));
+        if (sec >= 20)  i->ui->timerDisplay->setText(QString("剩餘時間: %1:%2").arg(floor(TODOUBLE(timeLimit)/countdownTime)).arg(sec%60 < 10 ? QString("0%1").arg(sec%60) : QString::number(sec%60)));
+        else i->ui->timerDisplay->setText(QString("剩餘時間: <font color=\"#ff0000\">%1:%2</font>").arg(floor(TODOUBLE(timeLimit)/countdownTime)).arg(sec%60 < 10 ? QString("0%1").arg(sec%60) : QString::number(sec%60)));
     });
 }
 
