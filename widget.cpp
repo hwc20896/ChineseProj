@@ -68,6 +68,7 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
             displayCount = property.value("display_quantity").toInteger(1);
         }
     }
+    intro->isMuted = defaultBGMMute;
     intro->SetMute(defaultBGMMute);
 
     featureList = {"普通","限時"};
