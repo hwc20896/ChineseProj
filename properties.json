@@ -3,5 +3,6 @@
     "display_quantity": 5,
     "default_background_mute": true,
     "default_effect_mute": false,
+    "toggle_hardmode_enabled": true,
     "hardmode_countdown_ms": 60000
 }

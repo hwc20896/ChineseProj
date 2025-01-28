@@ -48,6 +48,7 @@ class Widget : public QStackedWidget{
         bool defaultEffectMute = false;
         int64_t hardmodeTick = 30000;
         int64_t displayCount = 1;
+        bool isHardmodeEnabled = false;
 };
 
 class OutroWidget : public QWidget{

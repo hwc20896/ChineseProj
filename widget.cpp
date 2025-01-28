@@ -66,6 +66,7 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
             defaultEffectMute = property.value("default_effect_mute").toBool();
             hardmodeTick = property.value("hardmode_countdown_ms").toInteger(30000);
             displayCount = property.value("display_quantity").toInteger(1);
+            isHardmodeEnabled = property.value("toggle_hardmode_enabled").toBool();
         }
     }
     intro->isMuted = defaultBGMMute;
@@ -79,6 +80,8 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
     intro->intro_form->featureBox->addItems(featureList);
     intro->intro_form->featureBox->setCurrentIndex(0);
     intro->intro_form->gamemodeExplanation->setText(modeExplanation[0]);
+    intro->intro_form->featureBox->setVisible(isHardmodeEnabled);
+    intro->intro_form->gamemodeExplanation->setVisible(isHardmodeEnabled);
     connect(intro->intro_form->startGame,BUTTONCLICK,this,&Widget::startGame);
     connect(intro->intro_form->rule,BUTTONCLICK,this,[=,this]{this->setCurrentWidget(rule);});
     connect(rule->rule_form->returnButton,BUTTONCLICK,this,[=,this]{this->setCurrentWidget(intro);});
@@ -104,6 +107,8 @@ void Widget::outroCall(){
     out->ui->featureBox->addItems(featureList);
     out->ui->featureBox->setCurrentIndex(currentGameMode);
     out->ui->gamemodeExplanation->setText(modeExplanation[currentGameMode]);
+    out->ui->featureBox->setVisible(isHardmodeEnabled);
+    out->ui->gamemodeExplanation->setVisible(isHardmodeEnabled);
     connect(out->ui->featureBox, &QComboBox::currentIndexChanged,this,[=,this](int index){out->ui->gamemodeExplanation->setText(modeExplanation[index]);});
     out->ui->score->setText(QString("你的得分為：%1 / %2：%3%").arg(AddColor(mng->Corr,mng->displayCount)).arg(mng->displayCount).arg(TODOUBLE(mng->Corr)/TODOUBLE(mng->displayCount)*100));
     if (currentGameMode == 0){
