@@ -50,6 +50,7 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
     QFile propertiesFile(QString("%1/properties.json").arg(QDir::currentPath()));
     if (!questionFile.open(QIODevice::ReadOnly | QIODevice::Text) || !propertiesFile.open(QIODevice::ReadOnly | QIODevice::Text)){
         intro->intro_form->startGame->setEnabled(false);
+        intro->intro_form->startGame->setToolTip("由於文件缺失，無法開始游戲");
     }
     else{
         QString questionContext = QTextStream(&questionFile).readAll();
