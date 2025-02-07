@@ -1,0 +1,8 @@
+# Ignoring folders
+build/
+outputs/
+.vscode/
+
+# Ignoring files
+Questions.pro.user
+
