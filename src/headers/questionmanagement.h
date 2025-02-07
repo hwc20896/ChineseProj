@@ -9,7 +9,7 @@
 #include <chrono>
 #include <QTimer>
 #include <QIcon>
-#include "questiontemplate.h"
+#include "src/headers/questiontemplate.h"
 using namespace std::chrono;
 
 class QuestionManagement : public QStackedWidget{

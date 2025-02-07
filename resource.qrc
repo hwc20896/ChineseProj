@@ -1,10 +1,10 @@
 <RCC>
     <qresource prefix="/BGM">
-        <file>OMFG_Pizza.mp3</file>
+        <file>medias/OMFG_Pizza.mp3</file>
     </qresource>
     <qresource prefix="/SoundEffects">
-        <file>bingo.wav</file>
-        <file>ohno.wav</file>
+        <file>medias/bingo.wav</file>
+        <file>medias/ohno.wav</file>
     </qresource>
     <qresource prefix="/Drawables">
         <file>drawables/mute_pressed.png</file>

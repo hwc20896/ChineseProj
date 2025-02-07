@@ -1,4 +1,4 @@
-#include "questionmanagement.h"
+#include "src/headers/questionmanagement.h"
 #include <algorithm>
 #include <random>
 #define TIMERUNSOUT &QTimer::timeout
@@ -68,7 +68,7 @@ QuestionManagement::QuestionManagement(const QList<QuestionTemplate::MultipleCho
 
     bgm = new QMediaPlayer();
     bgm->setAudioOutput(out);
-    bgm->setSource(QUrl("qrc:/BGM/OMFG_Pizza.mp3"));
+    bgm->setSource({"qrc:/BGM/medias/OMFG_Pizza.mp3"});
     connect(bgm,&QMediaPlayer::mediaStatusChanged,this,[=,this](QMediaPlayer::MediaStatus status){
         if (status == QMediaPlayer::LoadedMedia) bgm->play();
     });

@@ -9,19 +9,19 @@ CONFIG += c++20
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main.cpp \
-    widget.cpp \
-    questionmanagement.cpp \
-    questiontemplate.cpp
+    src/cpp/main.cpp \
+    src/cpp/questionmanagement.cpp \
+    src/cpp/questiontemplate.cpp \
+    src/cpp/widget.cpp
 
 HEADERS += \
-    widget.h \
-    questionmanagement.h \
-    questiontemplate.h \
-    ui_multiplechoiceform.h \
-    ui_introwidget.h \
-    ui_outrowidget.h \
-    ui_rulewidget.h
+    src/headers/questionmanagement.h \
+    src/headers/questiontemplate.h \
+    src/headers/widget.h \
+    src/ui_files/ui_introwidget.h \
+    src/ui_files/ui_multiplechoiceform.h \
+    src/ui_files/ui_outrowidget.h \
+    src/ui_files/ui_rulewidget.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -29,10 +29,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 FORMS += \
-    IntroWidget.ui \
-    MultipleChoiceForm.ui \
-    OutroWidget.ui \
-    RuleWidget.ui
+    src/ui_files/RuleWidget.ui \
+    src/ui_files/MultipleChoiceForm.ui \
+    src/ui_files/OutroWidget.ui \
+    src/ui_files/IntroWidget.ui
 
 RESOURCES += \
     resource.qrc

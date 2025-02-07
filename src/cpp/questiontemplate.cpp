@@ -1,4 +1,4 @@
-#include "questiontemplate.h"
+#include "src/headers/questiontemplate.h"
 #include <QEventLoop>
 #include <QTimer>
 #include <algorithm>
@@ -30,9 +30,9 @@ QuestionWidget::MultipleChoice::MultipleChoice(QuestionTemplate::MultipleChoice 
     ui->questionTitle->setText(question.QuestionTitle);
 
     corrSound = new QSoundEffect;
-    corrSound->setSource({"qrc:/SoundEffects/bingo.wav"});
+    corrSound->setSource({"qrc:/SoundEffects/medias/bingo.wav"});
     incorrSound = new QSoundEffect;
-    incorrSound->setSource({"qrc:/SoundEffects/ohno.wav"});
+    incorrSound->setSource({"qrc:/SoundEffects/medias/bingo.wav"});
 }
 
 QuestionWidget::MultipleChoice::~MultipleChoice(){delete ui;}

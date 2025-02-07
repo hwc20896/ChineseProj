@@ -2,12 +2,12 @@
 #define WIDGET_H
 #include <QWidget>
 #include <QStackedWidget>
-#include "ui_introwidget.h"
-#include "ui_outrowidget.h"
-#include "ui_rulewidget.h"
 #include <QList>
 #include <QJsonDocument>
-#include "questionmanagement.h"
+#include "src/ui_files/ui_introwidget.h"
+#include "src/ui_files/ui_outrowidget.h"
+#include "src/ui_files/ui_rulewidget.h"
+#include "src/headers/questionmanagement.h"
 
 class IntroWidget : public QWidget{
     Q_OBJECT

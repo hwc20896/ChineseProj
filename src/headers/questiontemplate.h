@@ -9,7 +9,7 @@
 
 #include <QJsonArray>
 #include <QJsonObject>
-#include "ui_multiplechoiceform.h"
+#include "src/ui_files/ui_multiplechoiceform.h"
 
 #define Functions
 #define Variables
