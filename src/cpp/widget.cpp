@@ -51,6 +51,8 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
     if (!questionFile.open(QIODevice::ReadOnly | QIODevice::Text) || !propertiesFile.open(QIODevice::ReadOnly | QIODevice::Text)){
         intro->intro_form->startGame->setEnabled(false);
         intro->intro_form->startGame->setToolTip("由於文件缺失，無法開始游戲");
+        intro->intro_form->rule->setEnabled(false);
+        intro->intro_form->rule->setToolTip("由於文件缺失，無法打開規則頁");
     }
     else{
         QString questionContext = QTextStream(&questionFile).readAll();
@@ -68,6 +70,8 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
             hardmodeTick = property.value("hardmode_countdown_ms").toInteger(30000);
             displayCount = property.value("display_quantity").toInteger(1);
             isHardmodeEnabled = property.value("toggle_hardmode_enabled").toBool();
+
+            rule->rule_form->quantity->setText(QString("題目庫共有%1條，每次開始游戲系統會隨機抽取%2條顯示。").arg(questionList.size()).arg(displayCount));
         }
     }
     intro->isMuted = defaultBGMMute;
