@@ -34,7 +34,7 @@
     </font>
    </property>
    <property name="text">
-    <string>感謝游玩</string>
+    <string>感謝遊玩</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignCenter</set>

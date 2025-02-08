@@ -70,7 +70,7 @@
     </font>
    </property>
    <property name="text">
-    <string>開始游戲</string>
+    <string>開始遊戲</string>
    </property>
   </widget>
   <widget class="QComboBox" name="featureBox">

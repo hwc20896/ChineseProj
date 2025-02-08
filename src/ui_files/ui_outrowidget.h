@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'OutroWidget.ui'
 **
-** Created by: Qt User Interface Compiler version 6.8.0
+** Created by: Qt User Interface Compiler version 6.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -107,7 +107,7 @@ public:
     void retranslateUi(QWidget *OutroWidget)
     {
         OutroWidget->setWindowTitle(QCoreApplication::translate("OutroWidget", "Form", nullptr));
-        title->setText(QCoreApplication::translate("OutroWidget", "\346\204\237\350\254\235\346\270\270\347\216\251", nullptr));
+        title->setText(QCoreApplication::translate("OutroWidget", "\346\204\237\350\254\235\351\201\212\347\216\251", nullptr));
         replayButton->setText(QCoreApplication::translate("OutroWidget", "\351\207\215\347\216\251", nullptr));
         score->setText(QCoreApplication::translate("OutroWidget", "\344\275\240\347\232\204\345\276\227\345\210\206\347\202\272\357\274\232this / that\357\274\232thisat%", nullptr));
         totalTime->setText(QCoreApplication::translate("OutroWidget", "\347\270\275\347\255\224\351\241\214\346\231\202\351\226\223\357\274\232this s", nullptr));
