@@ -7,7 +7,7 @@
 #include <ranges>
 
 #define SETCOLOR(col) setStyleSheet(QString("background-color: %1;").arg(col))
-#define SETCHOSEN SETCOLOR("#6d7dff")
+#define SETCHOSEN SETCOLOR("#1d74f5")
 #define SETWRONG SETCOLOR("#ff0011")
 #define SETRIGHT SETCOLOR("#00ee22")
 
@@ -41,6 +41,7 @@ void QuestionWidget::MultipleChoice::AnswerCheck(QPushButton* targetButton){
     if (!Answered){
         Answered = true;
         emit TimeTap();
+        targetButton->SETCHOSEN;
         bool Corr = targetButton->text() == this->corrText;
         Cooldown(800);
         if (Corr){
