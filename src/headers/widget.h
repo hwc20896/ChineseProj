@@ -65,7 +65,8 @@ class OutroWidget : public QWidget{
 };
 
 namespace Json{
-template <class T> QList<T> deserializeArray(const QString& jsonString);
+template <class T> concept receivesJson = requires (const QJsonObject& obj){T(obj);};
+template <class T> requires Json::receivesJson<T> QList<T> deserializeArray(const QString& jsonString);
 }
 
 #endif // WIDGET_H

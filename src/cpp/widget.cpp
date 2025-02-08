@@ -80,7 +80,7 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
     featureList = {"普通","限時"};
     modeExplanation = {
         "普通模式：不限時，結尾顯示答題時間及平均每題時間",
-        "限時模式：限時1分鐘，超時將強制跳轉至結束頁"
+        QString("限時模式：限時%1，超時將強制跳轉至結束頁").arg(TimeDisplay(hardmodeTick))
     };
     intro->intro_form->featureBox->addItems(featureList);
     intro->intro_form->featureBox->setCurrentIndex(0);
@@ -165,7 +165,7 @@ QString Widget::TimeDisplay(double timeInput){
     else throw std::range_error("Invalid duration");
 }
 
-template <class T> QList<T> Json::deserializeArray(const QString& jsonString){
+template <class T> requires Json::receivesJson<T> QList<T> Json::deserializeArray(const QString& jsonString){
     QList<T> items;
     QJsonDocument doc = QJsonDocument::fromJson(jsonString.toUtf8());
     if (doc.isArray()){
