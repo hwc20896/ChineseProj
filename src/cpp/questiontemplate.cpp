@@ -4,7 +4,6 @@
 #include <algorithm>
 #include <random>
 #include <tuple>
-#include <ranges>
 
 #define SETCOLOR(col) setStyleSheet(QString("background-color: %1;").arg(col))
 #define SETCHOSEN SETCOLOR("#1d74f5")

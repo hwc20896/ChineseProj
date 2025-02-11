@@ -5,6 +5,7 @@
 #include <QTextStream>
 #include <QDir>
 #include <numeric>
+#include <QJsonArray>
 
 IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::IntroWidget){
     intro_form->setupUi(this);
