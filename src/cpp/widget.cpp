@@ -8,14 +8,16 @@
 
 IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::IntroWidget){
     intro_form->setupUi(this);
-    muted.addFile(":/Drawables/drawables/mute_unpressed.png",QSize(),QIcon::Normal);
-    muted.addFile(":/Drawables/drawables/mute_pressed.png",QSize(),QIcon::Active);
-    unmuted.addFile(":/Drawables/drawables/unmute_unpressed.png",QSize(),QIcon::Normal);
-    unmuted.addFile(":/Drawables/drawables/unmute_pressed.png",QSize(),QIcon::Active);
+    muted.addFile(":/Drawables/drawables/mute.png");
+    unmuted.addFile(":/Drawables/drawables/unmute.png");
     connect(intro_form->muteSwitch,BUTTONCLICK,this,[=,this]{
         isMuted = !isMuted;
         SetMute(isMuted);
     });
+    intro_form->muteSwitch->setObjectName("icon");
+    intro_form->startGame->setObjectName("navigator");
+    intro_form->rule->setObjectName("navigator");
+    this->setStyleSheet(StyleSheet::getStyleFromURI(":/style/src/css_files/regular.css"));
 }
 
 void IntroWidget::SetMute(bool isMuted){intro_form->muteSwitch->setIcon(isMuted?muted:unmuted);}
@@ -24,16 +26,18 @@ RuleWidget::RuleWidget(QWidget* parent) : QWidget(parent), rule_form(new Ui::Rul
 
 OutroWidget::OutroWidget(QWidget* parent) : QWidget(parent), ui(new Ui::OutroWidget){
     ui->setupUi(this);
-    muted.addFile(":/Drawables/drawables/mute_unpressed.png",QSize(50,50),QIcon::Normal);
-    muted.addFile(":/Drawables/drawables/mute_pressed.png",QSize(50,50),QIcon::Active);
-    unmuted.addFile(":/Drawables/drawables/unmute_unpressed.png",QSize(50,50),QIcon::Normal);
-    unmuted.addFile(":/Drawables/drawables/unmute_pressed.png",QSize(50,50),QIcon::Active);
+    ui->muteSwitch->setObjectName("icon");
+    ui->exitButton->setObjectName("navigator");
+    ui->replayButton->setObjectName("navigator");
+    muted.addFile(":/Drawables/drawables/mute.png");
+    unmuted.addFile(":/Drawables/drawables/unmute.png");
     connect(ui->replayButton,BUTTONCLICK,this,&OutroWidget::Replay);
     connect(ui->exitButton,BUTTONCLICK,this,&QApplication::quit);
     connect(ui->muteSwitch,BUTTONCLICK,this,[=,this]{
         isMuted = !isMuted;
         SetMute(isMuted);
     });
+    this->setStyleSheet(StyleSheet::getStyleFromURI(":/style/src/css_files/regular.css"));
 }
 
 void OutroWidget::SetMute(bool isMuted){ui->muteSwitch->setIcon(isMuted?muted:unmuted);}

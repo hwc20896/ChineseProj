@@ -57,4 +57,8 @@ class QuestionWidget::MultipleChoice : public QWidget{
         void TimeTap();
 };
 
+namespace StyleSheet{
+QString getStyleFromURI(const QString& uri);
+}
+
 #endif

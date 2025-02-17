@@ -17,10 +17,8 @@ QuestionManagement::QuestionManagement(const QList<QuestionTemplate::MultipleCho
         TimeTick();
     });
 
-    muted.addFile(":/Drawables/drawables/mute_unpressed.png",QSize(50,50),QIcon::Normal);
-    muted.addFile(":/Drawables/drawables/mute_pressed.png",QSize(50,50),QIcon::Active);
-    unmuted.addFile(":/Drawables/drawables/unmute_unpressed.png",QSize(50,50),QIcon::Normal);
-    unmuted.addFile(":/Drawables/drawables/unmute_pressed.png",QSize(50,50),QIcon::Active);
+    muted.addFile(":/Drawables/drawables/mute.png");
+    unmuted.addFile(":/Drawables/drawables/unmute.png");
 
     out = new QAudioOutput;
     out->setVolume(.15);

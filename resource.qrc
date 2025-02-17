@@ -7,9 +7,12 @@
         <file>medias/ohno.wav</file>
     </qresource>
     <qresource prefix="/Drawables">
-        <file>drawables/mute_pressed.png</file>
-        <file>drawables/mute_unpressed.png</file>
-        <file>drawables/unmute_pressed.png</file>
-        <file>drawables/unmute_unpressed.png</file>
+        <file>drawables/mute.png</file>
+        <file>drawables/unmute.png</file>
+    </qresource>
+    <qresource prefix="/style">
+        <file>src/css_files/after_choose.css</file>
+        <file>src/css_files/before_choose.css</file>
+        <file>src/css_files/regular.css</file>
     </qresource>
 </RCC>

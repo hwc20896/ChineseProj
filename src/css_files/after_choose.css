@@ -1,0 +1,51 @@
+/*  Option A, B, C, D: Regular, unselected  */
+QPushButton#option{
+    background-color: #f0f0f0;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+/*  Pressed  */
+QPushButton#option[answer_status="chosen"]{
+    background-color: #6161ff;
+    color: white;
+}
+
+/*  Option: Correct  */
+QPushButton#option[answer_status="correct"]{
+    background-color: chartreuse;
+}
+
+/*  Option: Incorrect  */
+QPushButton#option[answer_status="incorrect"]{
+    background-color: red;
+}
+
+/*  Previous question, Next question  */
+QPushButton#navigator{
+    background-color: #f0f0f0;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+QPushButton#navigator:hover{
+    background-color: lightgray;
+}
+
+QPushButton#navigator:disabled{
+    background-color: #f0f0f0;
+    color: gray;
+    border-color: gray;
+}
+
+/*  Mute Switch  */
+QPushButton#icon{
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+QPushButton#icon:hover{
+    background-color: #e8e8e8;
+}
