@@ -7,13 +7,8 @@
 #include <QPushButton>
 #include <QSoundEffect>
 
-#include <QJsonArray>
 #include <QJsonObject>
 #include "src/ui_files/ui_multiplechoiceform.h"
-
-#define Functions
-#define Variables
-#define Widgets
 
 #define TODOUBLE(val) static_cast<double>(val)
 #define BUTTONCLICK &QPushButton::clicked

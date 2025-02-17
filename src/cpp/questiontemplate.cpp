@@ -4,9 +4,12 @@
 #include <algorithm>
 #include <random>
 #include <tuple>
+<<<<<<< HEAD
 #include <ranges>
 #include <QStyle>
 #include <QFile>
+=======
+>>>>>>> d837d8fac7d4ebbd65e13f2b31de7e0b30cf4f7b
 
 #define __REFRESH(button)\
     this->style()->unpolish(button);\
