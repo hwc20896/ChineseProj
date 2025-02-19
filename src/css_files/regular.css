@@ -24,3 +24,23 @@ QPushButton#icon:hover{
     background-color: #e8e8e8;
 }
 
+/*  ComboBox  */
+QComboBox{
+    border: 1px solid black;
+    border-radius: 3px;
+    padding-left: 8px;
+}
+
+QComboBox:hover{
+    background-color: #e3e3e3;
+}
+
+QComboBox::down-arrow{
+    image: url(:/Drawables/drawables/arrow_down.png);
+    width: 10;
+    height: 10;
+}
+
+QComboBox::drop-down{
+    border: none;
+}

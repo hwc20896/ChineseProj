@@ -9,6 +9,7 @@
     <qresource prefix="/Drawables">
         <file>drawables/mute.png</file>
         <file>drawables/unmute.png</file>
+        <file>drawables/arrow_down.png</file>
     </qresource>
     <qresource prefix="/style">
         <file>src/css_files/after_choose.css</file>
