@@ -27,6 +27,7 @@ RuleWidget::RuleWidget(QWidget* parent) : QWidget(parent), rule_form(new Ui::Rul
 
 OutroWidget::OutroWidget(QWidget* parent) : QWidget(parent), ui(new Ui::OutroWidget){
     ui->setupUi(this);
+    this->setFixedSize(1000,700);
     ui->muteSwitch->setObjectName("icon");
     ui->exitButton->setObjectName("navigator");
     ui->replayButton->setObjectName("navigator");
@@ -44,7 +45,7 @@ OutroWidget::OutroWidget(QWidget* parent) : QWidget(parent), ui(new Ui::OutroWid
 void OutroWidget::SetMute(bool isMuted){ui->muteSwitch->setIcon(isMuted?muted:unmuted);}
 
 Widget::Widget(QWidget* parent) : QStackedWidget(parent){
-    this->resize(1000,700);
+    this->setFixedSize(1000,700);
     intro = new IntroWidget;
     this->addWidget(intro);
     RuleWidget* rule = new RuleWidget;
