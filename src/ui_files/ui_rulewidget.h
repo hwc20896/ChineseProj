@@ -13,6 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -20,34 +21,53 @@ QT_BEGIN_NAMESPACE
 class Ui_RuleWidget
 {
 public:
+    QVBoxLayout *verticalLayout;
+    QVBoxLayout *rule;
     QLabel *ruleContext;
-    QPushButton *returnButton;
     QLabel *quantity;
+    QPushButton *returnButton;
 
     void setupUi(QWidget *RuleWidget)
     {
         if (RuleWidget->objectName().isEmpty())
             RuleWidget->setObjectName("RuleWidget");
         RuleWidget->resize(1000, 700);
+        verticalLayout = new QVBoxLayout(RuleWidget);
+        verticalLayout->setSpacing(60);
+        verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setContentsMargins(70, 70, 70, 90);
+        rule = new QVBoxLayout();
+        rule->setObjectName("rule");
         ruleContext = new QLabel(RuleWidget);
         ruleContext->setObjectName("ruleContext");
-        ruleContext->setGeometry(QRect(80, 130, 780, 191));
+        ruleContext->setMaximumSize(QSize(16777215, 180));
         QFont font;
         font.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font.setPointSize(20);
         ruleContext->setFont(font);
-        ruleContext->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop);
+        ruleContext->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
+
+        rule->addWidget(ruleContext);
+
+        quantity = new QLabel(RuleWidget);
+        quantity->setObjectName("quantity");
+        quantity->setMaximumSize(QSize(16777215, 80));
+        quantity->setFont(font);
+
+        rule->addWidget(quantity);
+
+
+        verticalLayout->addLayout(rule);
+
         returnButton = new QPushButton(RuleWidget);
         returnButton->setObjectName("returnButton");
-        returnButton->setGeometry(QRect(390, 550, 210, 80));
         QFont font1;
         font1.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font1.setPointSize(21);
         returnButton->setFont(font1);
-        quantity = new QLabel(RuleWidget);
-        quantity->setObjectName("quantity");
-        quantity->setGeometry(QRect(80, 380, 871, 50));
-        quantity->setFont(font);
+
+        verticalLayout->addWidget(returnButton);
+
 
         retranslateUi(RuleWidget);
 
@@ -58,8 +78,8 @@ public:
     {
         RuleWidget->setWindowTitle(QCoreApplication::translate("RuleWidget", "Form", nullptr));
         ruleContext->setText(QCoreApplication::translate("RuleWidget", "<html><head/><body><p>\350\246\217\345\211\207\357\274\232</p><p>\346\214\211\344\270\213\351\226\213\345\247\213\351\201\212\346\210\262\345\276\214\357\274\214\350\253\213\346\214\211\344\270\213\346\255\243\347\242\272\351\201\270\351\240\205\344\273\245\344\275\234\347\255\224\343\200\202</p><p>\346\214\211\344\270\213\351\214\257\350\252\244\351\201\270\351\240\205\345\260\207\350\207\252\345\213\225\351\241\257\347\244\272\346\255\243\347\242\272\351\201\270\351\240\205\343\200\202</p><p><br/></p></body></html>", nullptr));
-        returnButton->setText(QCoreApplication::translate("RuleWidget", "\350\277\224\345\233\236", nullptr));
         quantity->setText(QCoreApplication::translate("RuleWidget", "\351\241\214\347\233\256\345\272\253\345\205\261\346\234\211n\346\242\235\357\274\214\346\257\217\346\254\241\351\226\213\345\247\213\351\201\212\346\210\262\347\263\273\347\265\261\346\234\203\351\232\250\346\251\237\346\212\275\345\217\226k\346\242\235\351\241\257\347\244\272\343\200\202", nullptr));
+        returnButton->setText(QCoreApplication::translate("RuleWidget", "\350\277\224\345\233\236", nullptr));
     } // retranslateUi
 
 };

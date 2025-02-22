@@ -13,66 +13,81 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="ruleContext">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>130</y>
-     <width>780</width>
-     <height>191</height>
-    </rect>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>60</number>
    </property>
-   <property name="font">
-    <font>
-     <family>Microsoft JhengHei</family>
-     <pointsize>20</pointsize>
-    </font>
+   <property name="leftMargin">
+    <number>70</number>
    </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;規則：&lt;/p&gt;&lt;p&gt;按下開始遊戲後，請按下正確選項以作答。&lt;/p&gt;&lt;p&gt;按下錯誤選項將自動顯示正確選項。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   <property name="topMargin">
+    <number>70</number>
    </property>
-   <property name="alignment">
-    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+   <property name="rightMargin">
+    <number>70</number>
    </property>
-  </widget>
-  <widget class="QPushButton" name="returnButton">
-   <property name="geometry">
-    <rect>
-     <x>390</x>
-     <y>550</y>
-     <width>210</width>
-     <height>80</height>
-    </rect>
+   <property name="bottomMargin">
+    <number>90</number>
    </property>
-   <property name="font">
-    <font>
-     <family>Microsoft JhengHei</family>
-     <pointsize>21</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>返回</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="quantity">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>380</y>
-     <width>871</width>
-     <height>50</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Microsoft JhengHei</family>
-     <pointsize>20</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>題目庫共有n條，每次開始遊戲系統會隨機抽取k條顯示。</string>
-   </property>
-  </widget>
+   <item>
+    <layout class="QVBoxLayout" name="rule">
+     <item>
+      <widget class="QLabel" name="ruleContext">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>180</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Microsoft JhengHei</family>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;規則：&lt;/p&gt;&lt;p&gt;按下開始遊戲後，請按下正確選項以作答。&lt;/p&gt;&lt;p&gt;按下錯誤選項將自動顯示正確選項。&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="quantity">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Microsoft JhengHei</family>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>題目庫共有n條，每次開始遊戲系統會隨機抽取k條顯示。</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QPushButton" name="returnButton">
+     <property name="font">
+      <font>
+       <family>Microsoft JhengHei</family>
+       <pointsize>21</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>返回</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

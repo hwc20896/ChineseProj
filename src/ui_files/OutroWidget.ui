@@ -18,198 +18,207 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="title">
-   <property name="geometry">
-    <rect>
-     <x>305</x>
-     <y>60</y>
-     <width>390</width>
-     <height>60</height>
-    </rect>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>20</number>
    </property>
-   <property name="font">
-    <font>
-     <family>Microsoft JhengHei</family>
-     <pointsize>26</pointsize>
-    </font>
+   <property name="topMargin">
+    <number>20</number>
    </property>
-   <property name="text">
-    <string>感謝遊玩</string>
+   <property name="rightMargin">
+    <number>20</number>
    </property>
-   <property name="alignment">
-    <set>Qt::AlignmentFlag::AlignCenter</set>
+   <property name="bottomMargin">
+    <number>40</number>
    </property>
-  </widget>
-  <widget class="QPushButton" name="replayButton">
-   <property name="geometry">
-    <rect>
-     <x>380</x>
-     <y>520</y>
-     <width>240</width>
-     <height>90</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Microsoft JhengHei</family>
-     <pointsize>20</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>重玩</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="score">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>140</y>
-     <width>580</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Microsoft JhengHei</family>
-     <pointsize>18</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>你的得分為：this / that：thisat%</string>
-   </property>
-   <property name="textFormat">
-    <enum>Qt::TextFormat::MarkdownText</enum>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignmentFlag::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="totalTime">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>220</y>
-     <width>580</width>
-     <height>60</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Microsoft JhengHei</family>
-     <pointsize>18</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>總答題時間：this s</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignmentFlag::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QLabel" name="avgTime">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>300</y>
-     <width>580</width>
-     <height>60</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Microsoft JhengHei</family>
-     <pointsize>18</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>平均答題時間：this s</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignmentFlag::AlignCenter</set>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="exitButton">
-   <property name="geometry">
-    <rect>
-     <x>840</x>
-     <y>20</y>
-     <width>120</width>
-     <height>50</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Microsoft JhengHei</family>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>退出</string>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="featureBox">
-   <property name="geometry">
-    <rect>
-     <x>380</x>
-     <y>390</y>
-     <width>240</width>
-     <height>60</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Microsoft JhengHei</family>
-     <pointsize>25</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true"/>
-   </property>
-   <property name="editable">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="gamemodeExplanation">
-   <property name="geometry">
-    <rect>
-     <x>210</x>
-     <y>470</y>
-     <width>580</width>
-     <height>60</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Microsoft JhengHei</family>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="muteSwitch">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>20</y>
-     <width>50</width>
-     <height>50</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>40</width>
-     <height>40</height>
-    </size>
-   </property>
-  </widget>
+   <item>
+    <layout class="QHBoxLayout" name="upperNavigator">
+     <property name="spacing">
+      <number>650</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="muteSwitch">
+       <property name="maximumSize">
+        <size>
+         <width>50</width>
+         <height>50</height>
+        </size>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="exitButton">
+       <property name="maximumSize">
+        <size>
+         <width>120</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>Microsoft JhengHei</family>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>退出</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="resultLayout">
+     <property name="spacing">
+      <number>40</number>
+     </property>
+     <property name="bottomMargin">
+      <number>40</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="title">
+       <property name="font">
+        <font>
+         <family>Microsoft JhengHei</family>
+         <pointsize>26</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>感謝遊玩</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="score">
+       <property name="font">
+        <font>
+         <family>Microsoft JhengHei</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>你的得分為：this / that：thisat%</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::TextFormat::MarkdownText</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="totalTime">
+       <property name="font">
+        <font>
+         <family>Microsoft JhengHei</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>總答題時間：this s</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="avgTime">
+       <property name="font">
+        <font>
+         <family>Microsoft JhengHei</family>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>平均答題時間：this s</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="gamemodeLayout">
+     <property name="topMargin">
+      <number>15</number>
+     </property>
+     <property name="bottomMargin">
+      <number>15</number>
+     </property>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QComboBox" name="featureBox">
+         <property name="maximumSize">
+          <size>
+           <width>240</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft JhengHei</family>
+           <pointsize>25</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="editable">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="gamemodeExplanation">
+       <property name="font">
+        <font>
+         <family>Microsoft JhengHei</family>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>TextLabel</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QPushButton" name="replayButton">
+     <property name="font">
+      <font>
+       <family>Microsoft JhengHei</family>
+       <pointsize>20</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>重玩</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
