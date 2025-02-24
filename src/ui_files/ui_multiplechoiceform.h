@@ -15,6 +15,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -27,16 +28,35 @@ public:
     QHBoxLayout *upperNavigator;
     QLabel *correctState;
     QPushButton *muteState;
+    QWidget *timerDisplayContainer;
+    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *timerDisplayAligner;
     QLabel *timerDisplay;
     QLabel *progress;
     QLabel *questionTitle;
     QGridLayout *optionLayout;
+    QWidget *optionBSpacer;
+    QVBoxLayout *verticalLayout_4;
+    QHBoxLayout *optionBAligner;
     QPushButton *optionB;
+    QWidget *optionASpacer;
+    QVBoxLayout *verticalLayout_3;
+    QHBoxLayout *optionAAligner;
     QPushButton *optionA;
+    QWidget *optionCSpacer;
+    QVBoxLayout *verticalLayout_8;
+    QVBoxLayout *optionCAligner;
     QPushButton *optionC;
+    QWidget *optionDSpacer;
+    QVBoxLayout *verticalLayout_6;
+    QVBoxLayout *optionDAligner;
     QPushButton *optionD;
     QHBoxLayout *bottomNavigator;
+    QWidget *prevButtonSpacer;
+    QHBoxLayout *horizontalLayout_2;
+    QHBoxLayout *prevButtonAligner;
     QPushButton *prevButton;
+    QSpacerItem *horizontalSpacer;
     QPushButton *nextQuestion;
 
     void setupUi(QWidget *MultipleChoice)
@@ -47,9 +67,12 @@ public:
         verticalLayout = new QVBoxLayout(MultipleChoice);
         verticalLayout->setSpacing(40);
         verticalLayout->setObjectName("verticalLayout");
-        verticalLayout->setContentsMargins(20, 20, 20, 20);
+        verticalLayout->setContentsMargins(20, 20, 20, 40);
         upperNavigator = new QHBoxLayout();
+        upperNavigator->setSpacing(20);
         upperNavigator->setObjectName("upperNavigator");
+        upperNavigator->setSizeConstraint(QLayout::SizeConstraint::SetFixedSize);
+        upperNavigator->setContentsMargins(-1, -1, -1, 20);
         correctState = new QLabel(MultipleChoice);
         correctState->setObjectName("correctState");
         correctState->setMaximumSize(QSize(16777215, 50));
@@ -57,7 +80,7 @@ public:
         font.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font.setPointSize(16);
         correctState->setFont(font);
-        correctState->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        correctState->setAlignment(Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter);
 
         upperNavigator->addWidget(correctState);
 
@@ -68,13 +91,27 @@ public:
 
         upperNavigator->addWidget(muteState);
 
-        timerDisplay = new QLabel(MultipleChoice);
+        timerDisplayContainer = new QWidget(MultipleChoice);
+        timerDisplayContainer->setObjectName("timerDisplayContainer");
+        verticalLayout_2 = new QVBoxLayout(timerDisplayContainer);
+        verticalLayout_2->setObjectName("verticalLayout_2");
+        timerDisplayAligner = new QHBoxLayout();
+        timerDisplayAligner->setObjectName("timerDisplayAligner");
+        timerDisplay = new QLabel(timerDisplayContainer);
         timerDisplay->setObjectName("timerDisplay");
-        timerDisplay->setMaximumSize(QSize(16777215, 50));
-        timerDisplay->setFont(font);
+        timerDisplay->setMinimumSize(QSize(0, 50));
+        QFont font1;
+        font1.setPointSize(16);
+        timerDisplay->setFont(font1);
         timerDisplay->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        upperNavigator->addWidget(timerDisplay);
+        timerDisplayAligner->addWidget(timerDisplay);
+
+
+        verticalLayout_2->addLayout(timerDisplayAligner);
+
+
+        upperNavigator->addWidget(timerDisplayContainer);
 
         progress = new QLabel(MultipleChoice);
         progress->setObjectName("progress");
@@ -89,11 +126,11 @@ public:
 
         questionTitle = new QLabel(MultipleChoice);
         questionTitle->setObjectName("questionTitle");
-        QFont font1;
-        font1.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
-        font1.setPointSize(26);
-        questionTitle->setFont(font1);
-        questionTitle->setAlignment(Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
+        font2.setPointSize(26);
+        questionTitle->setFont(font2);
+        questionTitle->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout->addWidget(questionTitle);
 
@@ -101,65 +138,132 @@ public:
         optionLayout->setObjectName("optionLayout");
         optionLayout->setHorizontalSpacing(7);
         optionLayout->setContentsMargins(80, -1, 80, -1);
-        optionB = new QPushButton(MultipleChoice);
+        optionBSpacer = new QWidget(MultipleChoice);
+        optionBSpacer->setObjectName("optionBSpacer");
+        verticalLayout_4 = new QVBoxLayout(optionBSpacer);
+        verticalLayout_4->setObjectName("verticalLayout_4");
+        optionBAligner = new QHBoxLayout();
+        optionBAligner->setObjectName("optionBAligner");
+        optionB = new QPushButton(optionBSpacer);
         optionB->setObjectName("optionB");
-        optionB->setEnabled(true);
-        optionB->setMinimumSize(QSize(0, 120));
-        optionB->setMaximumSize(QSize(350, 16777215));
-        QFont font2;
-        font2.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
-        font2.setPointSize(15);
-        optionB->setFont(font2);
+        optionB->setMinimumSize(QSize(0, 100));
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
+        font3.setPointSize(15);
+        optionB->setFont(font3);
 
-        optionLayout->addWidget(optionB, 0, 1, 1, 1);
+        optionBAligner->addWidget(optionB);
 
-        optionA = new QPushButton(MultipleChoice);
+
+        verticalLayout_4->addLayout(optionBAligner);
+
+
+        optionLayout->addWidget(optionBSpacer, 1, 1, 1, 1);
+
+        optionASpacer = new QWidget(MultipleChoice);
+        optionASpacer->setObjectName("optionASpacer");
+        verticalLayout_3 = new QVBoxLayout(optionASpacer);
+        verticalLayout_3->setObjectName("verticalLayout_3");
+        optionAAligner = new QHBoxLayout();
+        optionAAligner->setObjectName("optionAAligner");
+        optionA = new QPushButton(optionASpacer);
         optionA->setObjectName("optionA");
-        optionA->setEnabled(true);
-        optionA->setMinimumSize(QSize(0, 120));
-        optionA->setMaximumSize(QSize(350, 16777215));
-        optionA->setFont(font2);
+        optionA->setMinimumSize(QSize(0, 100));
+        optionA->setFont(font3);
 
-        optionLayout->addWidget(optionA, 0, 0, 1, 1);
+        optionAAligner->addWidget(optionA);
 
-        optionC = new QPushButton(MultipleChoice);
+
+        verticalLayout_3->addLayout(optionAAligner);
+
+
+        optionLayout->addWidget(optionASpacer, 1, 0, 1, 1);
+
+        optionCSpacer = new QWidget(MultipleChoice);
+        optionCSpacer->setObjectName("optionCSpacer");
+        verticalLayout_8 = new QVBoxLayout(optionCSpacer);
+        verticalLayout_8->setObjectName("verticalLayout_8");
+        optionCAligner = new QVBoxLayout();
+        optionCAligner->setObjectName("optionCAligner");
+        optionC = new QPushButton(optionCSpacer);
         optionC->setObjectName("optionC");
-        optionC->setEnabled(true);
-        optionC->setMinimumSize(QSize(0, 120));
-        optionC->setMaximumSize(QSize(400, 16777215));
-        optionC->setFont(font2);
+        optionC->setMinimumSize(QSize(0, 100));
+        optionC->setFont(font3);
 
-        optionLayout->addWidget(optionC, 1, 0, 1, 1);
+        optionCAligner->addWidget(optionC);
 
-        optionD = new QPushButton(MultipleChoice);
+
+        verticalLayout_8->addLayout(optionCAligner);
+
+
+        optionLayout->addWidget(optionCSpacer, 2, 0, 1, 1);
+
+        optionDSpacer = new QWidget(MultipleChoice);
+        optionDSpacer->setObjectName("optionDSpacer");
+        verticalLayout_6 = new QVBoxLayout(optionDSpacer);
+        verticalLayout_6->setObjectName("verticalLayout_6");
+        optionDAligner = new QVBoxLayout();
+        optionDAligner->setObjectName("optionDAligner");
+        optionD = new QPushButton(optionDSpacer);
         optionD->setObjectName("optionD");
-        optionD->setEnabled(true);
-        optionD->setMinimumSize(QSize(0, 120));
-        optionD->setMaximumSize(QSize(350, 16777215));
-        optionD->setFont(font2);
+        optionD->setMinimumSize(QSize(0, 100));
+        optionD->setFont(font3);
 
-        optionLayout->addWidget(optionD, 1, 1, 1, 1);
+        optionDAligner->addWidget(optionD);
+
+
+        verticalLayout_6->addLayout(optionDAligner);
+
+
+        optionLayout->addWidget(optionDSpacer, 2, 1, 1, 1);
 
 
         verticalLayout->addLayout(optionLayout);
 
         bottomNavigator = new QHBoxLayout();
-        bottomNavigator->setSpacing(600);
+        bottomNavigator->setSpacing(0);
         bottomNavigator->setObjectName("bottomNavigator");
-        prevButton = new QPushButton(MultipleChoice);
+        bottomNavigator->setSizeConstraint(QLayout::SizeConstraint::SetFixedSize);
+        prevButtonSpacer = new QWidget(MultipleChoice);
+        prevButtonSpacer->setObjectName("prevButtonSpacer");
+        prevButtonSpacer->setMinimumSize(QSize(120, 70));
+        prevButtonSpacer->setMaximumSize(QSize(180, 70));
+        horizontalLayout_2 = new QHBoxLayout(prevButtonSpacer);
+        horizontalLayout_2->setSpacing(0);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        prevButtonAligner = new QHBoxLayout();
+        prevButtonAligner->setSpacing(0);
+        prevButtonAligner->setObjectName("prevButtonAligner");
+        prevButton = new QPushButton(prevButtonSpacer);
         prevButton->setObjectName("prevButton");
         prevButton->setMinimumSize(QSize(120, 70));
-        prevButton->setMaximumSize(QSize(180, 16777215));
-        prevButton->setFont(font2);
+        prevButton->setMaximumSize(QSize(180, 70));
+        prevButton->setFont(font3);
 
-        bottomNavigator->addWidget(prevButton);
+        prevButtonAligner->addWidget(prevButton);
+
+
+        horizontalLayout_2->addLayout(prevButtonAligner);
+
+
+        bottomNavigator->addWidget(prevButtonSpacer);
+
+        horizontalSpacer = new QSpacerItem(600, 20, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
+
+        bottomNavigator->addItem(horizontalSpacer);
 
         nextQuestion = new QPushButton(MultipleChoice);
         nextQuestion->setObjectName("nextQuestion");
         nextQuestion->setEnabled(false);
-        nextQuestion->setMinimumSize(QSize(120, 70));
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Fixed);
+        sizePolicy.setHorizontalStretch(120);
+        sizePolicy.setVerticalStretch(70);
+        sizePolicy.setHeightForWidth(nextQuestion->sizePolicy().hasHeightForWidth());
+        nextQuestion->setSizePolicy(sizePolicy);
+        nextQuestion->setMinimumSize(QSize(180, 70));
         nextQuestion->setMaximumSize(QSize(180, 70));
-        nextQuestion->setFont(font2);
+        nextQuestion->setFont(font3);
 
         bottomNavigator->addWidget(nextQuestion);
 
@@ -180,10 +284,10 @@ public:
         timerDisplay->setText(QCoreApplication::translate("MultipleChoice", "TextLabel", nullptr));
         progress->setText(QCoreApplication::translate("MultipleChoice", "TextLabel", nullptr));
         questionTitle->setText(QCoreApplication::translate("MultipleChoice", "TextLabel", nullptr));
-        optionB->setText(QString());
-        optionA->setText(QString());
-        optionC->setText(QString());
-        optionD->setText(QString());
+        optionB->setText(QCoreApplication::translate("MultipleChoice", "PushButton", nullptr));
+        optionA->setText(QCoreApplication::translate("MultipleChoice", "PushButton", nullptr));
+        optionC->setText(QCoreApplication::translate("MultipleChoice", "PushButton", nullptr));
+        optionD->setText(QCoreApplication::translate("MultipleChoice", "PushButton", nullptr));
         prevButton->setText(QCoreApplication::translate("MultipleChoice", "\342\206\220 \344\270\212\344\270\200\351\240\201", nullptr));
         nextQuestion->setText(QCoreApplication::translate("MultipleChoice", "\344\270\213\344\270\200\351\240\201 \342\206\222", nullptr));
     } // retranslateUi

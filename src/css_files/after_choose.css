@@ -49,3 +49,9 @@ QPushButton#icon{
 QPushButton#icon:hover{
     background-color: #e8e8e8;
 }
+
+/*  Question title only  */
+QLabel#questionTitle{
+    border: 1px solid #333333;
+    border-radius: 2px;
+}

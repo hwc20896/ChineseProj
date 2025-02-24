@@ -36,6 +36,9 @@ public:
     QHBoxLayout *horizontalLayout;
     QComboBox *featureBox;
     QLabel *gamemodeExplanation;
+    QWidget *replaySpacer;
+    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *replayAligner;
     QPushButton *replayButton;
 
     void setupUi(QWidget *OutroWidget)
@@ -136,6 +139,7 @@ public:
 
         gamemodeExplanation = new QLabel(OutroWidget);
         gamemodeExplanation->setObjectName("gamemodeExplanation");
+        gamemodeExplanation->setMaximumSize(QSize(16777215, 50));
         gamemodeExplanation->setFont(font1);
         gamemodeExplanation->setAlignment(Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
 
@@ -144,14 +148,28 @@ public:
 
         verticalLayout->addLayout(gamemodeLayout);
 
-        replayButton = new QPushButton(OutroWidget);
+        replaySpacer = new QWidget(OutroWidget);
+        replaySpacer->setObjectName("replaySpacer");
+        verticalLayout_2 = new QVBoxLayout(replaySpacer);
+        verticalLayout_2->setObjectName("verticalLayout_2");
+        replayAligner = new QHBoxLayout();
+        replayAligner->setObjectName("replayAligner");
+        replayButton = new QPushButton(replaySpacer);
         replayButton->setObjectName("replayButton");
+        replayButton->setMinimumSize(QSize(0, 80));
+        replayButton->setMaximumSize(QSize(220, 80));
         QFont font5;
         font5.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font5.setPointSize(20);
         replayButton->setFont(font5);
 
-        verticalLayout->addWidget(replayButton);
+        replayAligner->addWidget(replayButton);
+
+
+        verticalLayout_2->addLayout(replayAligner);
+
+
+        verticalLayout->addWidget(replaySpacer);
 
 
         retranslateUi(OutroWidget);

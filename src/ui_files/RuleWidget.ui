@@ -31,6 +31,12 @@
    </property>
    <item>
     <layout class="QVBoxLayout" name="rule">
+     <property name="spacing">
+      <number>70</number>
+     </property>
+     <property name="topMargin">
+      <number>90</number>
+     </property>
      <item>
       <widget class="QLabel" name="ruleContext">
        <property name="maximumSize">
@@ -72,20 +78,30 @@
        </property>
       </widget>
      </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QPushButton" name="returnButton">
+         <property name="maximumSize">
+          <size>
+           <width>370</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft JhengHei</family>
+           <pointsize>21</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>返回</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
     </layout>
-   </item>
-   <item>
-    <widget class="QPushButton" name="returnButton">
-     <property name="font">
-      <font>
-       <family>Microsoft JhengHei</family>
-       <pointsize>21</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>返回</string>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>

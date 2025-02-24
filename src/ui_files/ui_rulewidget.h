@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
@@ -25,6 +26,7 @@ public:
     QVBoxLayout *rule;
     QLabel *ruleContext;
     QLabel *quantity;
+    QHBoxLayout *horizontalLayout_3;
     QPushButton *returnButton;
 
     void setupUi(QWidget *RuleWidget)
@@ -37,7 +39,9 @@ public:
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(70, 70, 70, 90);
         rule = new QVBoxLayout();
+        rule->setSpacing(70);
         rule->setObjectName("rule");
+        rule->setContentsMargins(-1, 90, -1, -1);
         ruleContext = new QLabel(RuleWidget);
         ruleContext->setObjectName("ruleContext");
         ruleContext->setMaximumSize(QSize(16777215, 180));
@@ -56,17 +60,23 @@ public:
 
         rule->addWidget(quantity);
 
-
-        verticalLayout->addLayout(rule);
-
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName("horizontalLayout_3");
         returnButton = new QPushButton(RuleWidget);
         returnButton->setObjectName("returnButton");
+        returnButton->setMaximumSize(QSize(370, 16777215));
         QFont font1;
         font1.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font1.setPointSize(21);
         returnButton->setFont(font1);
 
-        verticalLayout->addWidget(returnButton);
+        horizontalLayout_3->addWidget(returnButton);
+
+
+        rule->addLayout(horizontalLayout_3);
+
+
+        verticalLayout->addLayout(rule);
 
 
         retranslateUi(RuleWidget);

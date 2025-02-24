@@ -189,6 +189,12 @@
      </item>
      <item>
       <widget class="QLabel" name="gamemodeExplanation">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>50</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <family>Microsoft JhengHei</family>
@@ -206,16 +212,38 @@
     </layout>
    </item>
    <item>
-    <widget class="QPushButton" name="replayButton">
-     <property name="font">
-      <font>
-       <family>Microsoft JhengHei</family>
-       <pointsize>20</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>重玩</string>
-     </property>
+    <widget class="QWidget" name="replaySpacer" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="replayAligner">
+        <item>
+         <widget class="QPushButton" name="replayButton">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>220</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Microsoft JhengHei</family>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>重玩</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
    </item>
   </layout>

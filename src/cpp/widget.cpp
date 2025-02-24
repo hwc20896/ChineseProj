@@ -23,7 +23,11 @@ IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::
 
 void IntroWidget::SetMute(bool isMuted){intro_form->muteSwitch->setIcon(isMuted?muted:unmuted);}
 
-RuleWidget::RuleWidget(QWidget* parent) : QWidget(parent), rule_form(new Ui::RuleWidget){rule_form->setupUi(this);}
+RuleWidget::RuleWidget(QWidget* parent) : QWidget(parent), rule_form(new Ui::RuleWidget){
+    rule_form->setupUi(this);
+    rule_form->returnButton->setObjectName("navigator");
+    this->setStyleSheet(StyleSheet::getStyleFromURI(":/style/src/css_files/regular.css"));
+}
 
 OutroWidget::OutroWidget(QWidget* parent) : QWidget(parent), ui(new Ui::OutroWidget){
     ui->setupUi(this);

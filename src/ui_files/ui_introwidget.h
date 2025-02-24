@@ -50,6 +50,11 @@ public:
         upperNavigator->setContentsMargins(120, -1, -1, -1);
         muteSwitch = new QPushButton(IntroWidget);
         muteSwitch->setObjectName("muteSwitch");
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(muteSwitch->sizePolicy().hasHeightForWidth());
+        muteSwitch->setSizePolicy(sizePolicy);
         muteSwitch->setMaximumSize(QSize(50, 50));
         muteSwitch->setIconSize(QSize(40, 40));
 
