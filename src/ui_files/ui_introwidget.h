@@ -41,7 +41,7 @@ public:
             IntroWidget->setObjectName("IntroWidget");
         IntroWidget->resize(1000, 700);
         verticalLayout = new QVBoxLayout(IntroWidget);
-        verticalLayout->setSpacing(70);
+        verticalLayout->setSpacing(80);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(20, 20, 20, 90);
         upperNavigator = new QHBoxLayout();
@@ -50,23 +50,28 @@ public:
         upperNavigator->setContentsMargins(120, -1, -1, -1);
         muteSwitch = new QPushButton(IntroWidget);
         muteSwitch->setObjectName("muteSwitch");
-        QSizePolicy sizePolicy(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(muteSwitch->sizePolicy().hasHeightForWidth());
         muteSwitch->setSizePolicy(sizePolicy);
-        muteSwitch->setMaximumSize(QSize(50, 50));
-        muteSwitch->setIconSize(QSize(40, 40));
+        muteSwitch->setMinimumSize(QSize(50, 50));
+        muteSwitch->setMaximumSize(QSize(120, 120));
+        QFont font;
+        font.setPointSize(12);
+        muteSwitch->setFont(font);
+        muteSwitch->setIconSize(QSize(80, 80));
 
         upperNavigator->addWidget(muteSwitch);
 
         rule = new QPushButton(IntroWidget);
         rule->setObjectName("rule");
-        rule->setMaximumSize(QSize(120, 16777215));
-        QFont font;
-        font.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
-        font.setPointSize(20);
-        rule->setFont(font);
+        rule->setMinimumSize(QSize(120, 0));
+        rule->setMaximumSize(QSize(150, 80));
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
+        font1.setPointSize(20);
+        rule->setFont(font1);
 
         upperNavigator->addWidget(rule);
 
@@ -75,25 +80,31 @@ public:
 
         gameTitle = new QLabel(IntroWidget);
         gameTitle->setObjectName("gameTitle");
-        QFont font1;
-        font1.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
-        font1.setPointSize(30);
-        gameTitle->setFont(font1);
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
+        font2.setPointSize(30);
+        gameTitle->setFont(font2);
         gameTitle->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout->addWidget(gameTitle);
 
         gamemode = new QVBoxLayout();
+        gamemode->setSpacing(30);
         gamemode->setObjectName("gamemode");
         featureBoxLayout = new QHBoxLayout();
         featureBoxLayout->setObjectName("featureBoxLayout");
         featureBox = new QComboBox(IntroWidget);
         featureBox->setObjectName("featureBox");
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(featureBox->sizePolicy().hasHeightForWidth());
+        featureBox->setSizePolicy(sizePolicy1);
         featureBox->setMaximumSize(QSize(300, 16777215));
-        QFont font2;
-        font2.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
-        font2.setPointSize(25);
-        featureBox->setFont(font2);
+        QFont font3;
+        font3.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
+        font3.setPointSize(25);
+        featureBox->setFont(font3);
         featureBox->setStyleSheet(QString::fromUtf8(""));
         featureBox->setEditable(false);
         featureBox->setCurrentText(QString::fromUtf8(""));
@@ -105,10 +116,7 @@ public:
 
         gamemodeExplanation = new QLabel(IntroWidget);
         gamemodeExplanation->setObjectName("gamemodeExplanation");
-        QFont font3;
-        font3.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
-        font3.setPointSize(16);
-        gamemodeExplanation->setFont(font3);
+        gamemodeExplanation->setFont(font1);
         gamemodeExplanation->setAlignment(Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop);
 
         gamemode->addWidget(gamemodeExplanation);

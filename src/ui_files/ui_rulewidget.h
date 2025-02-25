@@ -26,7 +26,7 @@ public:
     QVBoxLayout *rule;
     QLabel *ruleContext;
     QLabel *quantity;
-    QHBoxLayout *horizontalLayout_3;
+    QHBoxLayout *returnAligner;
     QPushButton *returnButton;
 
     void setupUi(QWidget *RuleWidget)
@@ -39,12 +39,17 @@ public:
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(70, 70, 70, 90);
         rule = new QVBoxLayout();
-        rule->setSpacing(70);
+        rule->setSpacing(12);
         rule->setObjectName("rule");
-        rule->setContentsMargins(-1, 90, -1, -1);
+        rule->setContentsMargins(150, 90, 150, -1);
         ruleContext = new QLabel(RuleWidget);
         ruleContext->setObjectName("ruleContext");
-        ruleContext->setMaximumSize(QSize(16777215, 180));
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(ruleContext->sizePolicy().hasHeightForWidth());
+        ruleContext->setSizePolicy(sizePolicy);
+        ruleContext->setMaximumSize(QSize(700, 140));
         QFont font;
         font.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font.setPointSize(20);
@@ -55,25 +60,33 @@ public:
 
         quantity = new QLabel(RuleWidget);
         quantity->setObjectName("quantity");
-        quantity->setMaximumSize(QSize(16777215, 80));
+        sizePolicy.setHeightForWidth(quantity->sizePolicy().hasHeightForWidth());
+        quantity->setSizePolicy(sizePolicy);
+        quantity->setMaximumSize(QSize(800, 80));
         quantity->setFont(font);
 
         rule->addWidget(quantity);
 
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName("horizontalLayout_3");
+        returnAligner = new QHBoxLayout();
+        returnAligner->setObjectName("returnAligner");
         returnButton = new QPushButton(RuleWidget);
         returnButton->setObjectName("returnButton");
-        returnButton->setMaximumSize(QSize(370, 16777215));
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(returnButton->sizePolicy().hasHeightForWidth());
+        returnButton->setSizePolicy(sizePolicy1);
+        returnButton->setMinimumSize(QSize(180, 120));
+        returnButton->setMaximumSize(QSize(400, 200));
         QFont font1;
         font1.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font1.setPointSize(21);
         returnButton->setFont(font1);
 
-        horizontalLayout_3->addWidget(returnButton);
+        returnAligner->addWidget(returnButton);
 
 
-        rule->addLayout(horizontalLayout_3);
+        rule->addLayout(returnAligner);
 
 
         verticalLayout->addLayout(rule);
