@@ -150,6 +150,9 @@
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
      </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item>
@@ -293,14 +296,14 @@
       <widget class="QWidget" name="prevButtonSpacer" native="true">
        <property name="minimumSize">
         <size>
-         <width>120</width>
+         <width>180</width>
          <height>70</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>180</width>
-         <height>70</height>
+         <width>370</width>
+         <height>130</height>
         </size>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -326,16 +329,22 @@
           </property>
           <item>
            <widget class="QPushButton" name="prevButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
             <property name="minimumSize">
              <size>
-              <width>120</width>
+              <width>180</width>
               <height>70</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>180</width>
-              <height>70</height>
+              <width>370</width>
+              <height>130</height>
              </size>
             </property>
             <property name="font">
@@ -376,9 +385,9 @@
         <bool>false</bool>
        </property>
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>120</horstretch>
-         <verstretch>70</verstretch>
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <property name="minimumSize">
@@ -389,8 +398,8 @@
        </property>
        <property name="maximumSize">
         <size>
-         <width>180</width>
-         <height>70</height>
+         <width>370</width>
+         <height>130</height>
         </size>
        </property>
        <property name="font">

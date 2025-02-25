@@ -131,6 +131,7 @@ public:
         font2.setPointSize(26);
         questionTitle->setFont(font2);
         questionTitle->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        questionTitle->setWordWrap(true);
 
         verticalLayout->addWidget(questionTitle);
 
@@ -226,8 +227,8 @@ public:
         bottomNavigator->setSizeConstraint(QLayout::SizeConstraint::SetFixedSize);
         prevButtonSpacer = new QWidget(MultipleChoice);
         prevButtonSpacer->setObjectName("prevButtonSpacer");
-        prevButtonSpacer->setMinimumSize(QSize(120, 70));
-        prevButtonSpacer->setMaximumSize(QSize(180, 70));
+        prevButtonSpacer->setMinimumSize(QSize(180, 70));
+        prevButtonSpacer->setMaximumSize(QSize(370, 130));
         horizontalLayout_2 = new QHBoxLayout(prevButtonSpacer);
         horizontalLayout_2->setSpacing(0);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
@@ -237,8 +238,13 @@ public:
         prevButtonAligner->setObjectName("prevButtonAligner");
         prevButton = new QPushButton(prevButtonSpacer);
         prevButton->setObjectName("prevButton");
-        prevButton->setMinimumSize(QSize(120, 70));
-        prevButton->setMaximumSize(QSize(180, 70));
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(prevButton->sizePolicy().hasHeightForWidth());
+        prevButton->setSizePolicy(sizePolicy);
+        prevButton->setMinimumSize(QSize(180, 70));
+        prevButton->setMaximumSize(QSize(370, 130));
         prevButton->setFont(font3);
 
         prevButtonAligner->addWidget(prevButton);
@@ -256,13 +262,10 @@ public:
         nextQuestion = new QPushButton(MultipleChoice);
         nextQuestion->setObjectName("nextQuestion");
         nextQuestion->setEnabled(false);
-        QSizePolicy sizePolicy(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Fixed);
-        sizePolicy.setHorizontalStretch(120);
-        sizePolicy.setVerticalStretch(70);
         sizePolicy.setHeightForWidth(nextQuestion->sizePolicy().hasHeightForWidth());
         nextQuestion->setSizePolicy(sizePolicy);
         nextQuestion->setMinimumSize(QSize(180, 70));
-        nextQuestion->setMaximumSize(QSize(180, 70));
+        nextQuestion->setMaximumSize(QSize(370, 130));
         nextQuestion->setFont(font3);
 
         bottomNavigator->addWidget(nextQuestion);

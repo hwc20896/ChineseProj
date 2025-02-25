@@ -128,8 +128,10 @@ public:
         startLayout->setObjectName("startLayout");
         startGame = new QPushButton(IntroWidget);
         startGame->setObjectName("startGame");
+        sizePolicy1.setHeightForWidth(startGame->sizePolicy().hasHeightForWidth());
+        startGame->setSizePolicy(sizePolicy1);
         startGame->setMinimumSize(QSize(0, 80));
-        startGame->setMaximumSize(QSize(180, 16777215));
+        startGame->setMaximumSize(QSize(300, 160));
         QFont font4;
         font4.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font4.setPointSize(18);
