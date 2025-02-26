@@ -31,7 +31,6 @@ class QuestionManagement : public QStackedWidget{
         QList<QuestionWidget::MultipleChoice*> pageList;
         QList<QuestionTemplate::MultipleChoice> GetRandomOrder(QList<QuestionTemplate::MultipleChoice> Questions, int64_t Quantity);
         void UpdatePages();
-        QList<int> range(int Lim);
         int Incorr=0;
         int CurrentIndex=0;
         int Mode = 0;
