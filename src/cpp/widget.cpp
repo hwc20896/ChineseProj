@@ -6,6 +6,7 @@
 #include <QDir>
 #include <numeric>
 #include <QJsonArray>
+#include <QScreen>
 
 IntroWidget::IntroWidget(QWidget* parent) : QWidget(parent), intro_form(new Ui::IntroWidget){
     intro_form->setupUi(this);
@@ -109,10 +110,18 @@ void Widget::startGame(){
     mng->UpdateMute();
     mng->setEffectMute(defaultEffectMute);
     this->close();
-    if (this->isMaximized()) mng->showMaximized();
     mng->setWindowTitle(title);
-    mng->show();
+    if (this->isMaximized()) mng->showMaximized();
+    else {
+        mng->show();
+        centerWidget(mng);
+    }
     connect(mng,&QuestionManagement::GameFinish,this,&Widget::outroCall);
+}
+
+void Widget::centerWidget(QWidget* widget){
+    QRect screenSize = QApplication::primaryScreen()->availableGeometry();
+    widget->move((screenSize.width()-widget->width())/2,(screenSize.height()-widget->height())/2);
 }
 
 void Widget::outroCall(){
@@ -142,12 +151,12 @@ void Widget::outroCall(){
     connect(out,&OutroWidget::Replay,this,[=,this]{
         currentGameMode = out->ui->featureBox->currentIndex();
         mng = new QuestionManagement(questionList,displayCount,currentGameMode,hardmodeTick);
-        if (out->isMaximized()) mng->showMaximized();
         mng->isMuted = out->isMuted;
         mng->UpdateMute();
         out->close();
         mng->setWindowTitle(title);
-        mng->show();
+        if (out->isMaximized()) mng->showMaximized();
+        else mng->show();
         connect(mng,&QuestionManagement::GameFinish,this,&Widget::outroCall);
     });
     delete mng;

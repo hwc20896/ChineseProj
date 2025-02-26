@@ -34,6 +34,7 @@ class Widget : public QStackedWidget{
         void startGame();
         void restartGame();
         void outroCall();
+        void centerWidget(QWidget* widget);
         QString AddColor(int Corr, size_t Count);
         QString TimeDisplay(double time);
         QList<QuestionTemplate::MultipleChoice> questionList;
