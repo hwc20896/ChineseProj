@@ -15,6 +15,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -26,6 +27,7 @@ public:
     QVBoxLayout *verticalLayout;
     QHBoxLayout *upperNavigator;
     QPushButton *muteSwitch;
+    QSpacerItem *horizontalSpacer;
     QPushButton *exitButton;
     QVBoxLayout *resultLayout;
     QLabel *title;
@@ -45,7 +47,7 @@ public:
     {
         if (OutroWidget->objectName().isEmpty())
             OutroWidget->setObjectName("OutroWidget");
-        OutroWidget->resize(1000, 700);
+        OutroWidget->resize(1000, 733);
         QFont font;
         font.setPointSize(25);
         OutroWidget->setFont(font);
@@ -53,18 +55,34 @@ public:
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(20, 20, 20, 40);
         upperNavigator = new QHBoxLayout();
-        upperNavigator->setSpacing(650);
+        upperNavigator->setSpacing(0);
         upperNavigator->setObjectName("upperNavigator");
         muteSwitch = new QPushButton(OutroWidget);
         muteSwitch->setObjectName("muteSwitch");
-        muteSwitch->setMaximumSize(QSize(50, 50));
+        QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
+        sizePolicy.setHorizontalStretch(50);
+        sizePolicy.setVerticalStretch(50);
+        sizePolicy.setHeightForWidth(muteSwitch->sizePolicy().hasHeightForWidth());
+        muteSwitch->setSizePolicy(sizePolicy);
+        muteSwitch->setMinimumSize(QSize(50, 50));
+        muteSwitch->setMaximumSize(QSize(120, 120));
         muteSwitch->setIconSize(QSize(40, 40));
 
         upperNavigator->addWidget(muteSwitch);
 
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        upperNavigator->addItem(horizontalSpacer);
+
         exitButton = new QPushButton(OutroWidget);
         exitButton->setObjectName("exitButton");
-        exitButton->setMaximumSize(QSize(120, 16777215));
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(exitButton->sizePolicy().hasHeightForWidth());
+        exitButton->setSizePolicy(sizePolicy1);
+        exitButton->setMinimumSize(QSize(150, 120));
+        exitButton->setMaximumSize(QSize(200, 120));
         QFont font1;
         font1.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font1.setPointSize(16);
@@ -81,6 +99,7 @@ public:
         resultLayout->setContentsMargins(-1, -1, -1, 40);
         title = new QLabel(OutroWidget);
         title->setObjectName("title");
+        title->setMinimumSize(QSize(0, 60));
         QFont font2;
         font2.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font2.setPointSize(26);
@@ -124,7 +143,13 @@ public:
         horizontalLayout->setObjectName("horizontalLayout");
         featureBox = new QComboBox(OutroWidget);
         featureBox->setObjectName("featureBox");
-        featureBox->setMaximumSize(QSize(240, 16777215));
+        QSizePolicy sizePolicy2(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(featureBox->sizePolicy().hasHeightForWidth());
+        featureBox->setSizePolicy(sizePolicy2);
+        featureBox->setMinimumSize(QSize(0, 0));
+        featureBox->setMaximumSize(QSize(320, 16777215));
         QFont font4;
         font4.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font4.setPointSize(25);
@@ -157,7 +182,7 @@ public:
         replayButton = new QPushButton(replaySpacer);
         replayButton->setObjectName("replayButton");
         replayButton->setMinimumSize(QSize(0, 80));
-        replayButton->setMaximumSize(QSize(220, 80));
+        replayButton->setMaximumSize(QSize(260, 80));
         QFont font5;
         font5.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font5.setPointSize(20);
