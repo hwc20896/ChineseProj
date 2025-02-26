@@ -128,7 +128,6 @@ void Widget::outroCall(){
     OutroWidget* out = new OutroWidget;
     mng->close();
     int64_t totaltime = std::accumulate(mng->timeStamp.begin(),mng->timeStamp.end(),0LL);
-    if (this->isMaximized()) mng->showMaximized();
     out->ui->featureBox->addItems(featureList);
     out->ui->featureBox->setCurrentIndex(currentGameMode);
     out->ui->gamemodeExplanation->setText(modeExplanation[currentGameMode]);
@@ -147,7 +146,8 @@ void Widget::outroCall(){
     out->isMuted = mng->isMuted;
     out->SetMute(out->isMuted);
     out->setWindowTitle(title);
-    out->show();
+    if (mng->isMaximized()) out->showMaximized();
+    else out->show();
     connect(out,&OutroWidget::Replay,this,[=,this]{
         currentGameMode = out->ui->featureBox->currentIndex();
         mng = new QuestionManagement(questionList,displayCount,currentGameMode,hardmodeTick);
