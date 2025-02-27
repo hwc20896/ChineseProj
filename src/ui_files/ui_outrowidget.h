@@ -52,6 +52,7 @@ public:
         font.setPointSize(25);
         OutroWidget->setFont(font);
         verticalLayout = new QVBoxLayout(OutroWidget);
+        verticalLayout->setSpacing(20);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(20, 20, 20, 40);
         upperNavigator = new QHBoxLayout();
@@ -70,7 +71,7 @@ public:
 
         upperNavigator->addWidget(muteSwitch);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        horizontalSpacer = new QSpacerItem(200, 20, QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Minimum);
 
         upperNavigator->addItem(horizontalSpacer);
 
@@ -82,7 +83,7 @@ public:
         sizePolicy1.setHeightForWidth(exitButton->sizePolicy().hasHeightForWidth());
         exitButton->setSizePolicy(sizePolicy1);
         exitButton->setMinimumSize(QSize(150, 120));
-        exitButton->setMaximumSize(QSize(200, 120));
+        exitButton->setMaximumSize(QSize(240, 120));
         QFont font1;
         font1.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font1.setPointSize(16);
@@ -149,7 +150,7 @@ public:
         sizePolicy2.setHeightForWidth(featureBox->sizePolicy().hasHeightForWidth());
         featureBox->setSizePolicy(sizePolicy2);
         featureBox->setMinimumSize(QSize(0, 0));
-        featureBox->setMaximumSize(QSize(320, 16777215));
+        featureBox->setMaximumSize(QSize(320, 90));
         QFont font4;
         font4.setFamilies({QString::fromUtf8("Microsoft JhengHei")});
         font4.setPointSize(25);
