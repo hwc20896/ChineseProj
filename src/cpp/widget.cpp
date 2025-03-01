@@ -169,10 +169,10 @@ QString Widget::AddColor(int Corr, size_t Count){
      *  (30% ~ 55%] -> B
      *  [0% ~ 30%] -> C
      */
-    if (Rate > 80 && Rate <= 100) return QString("<font color=\"#e0cf37\">%1</font>").arg(Corr);
-    else if (Rate > 55 && Rate <= 80) return QString("<font color=\"#8a43c1\">%1</font>").arg(Corr);
-    else if (Rate > 30 && Rate <= 55) return QString("<font color=\"#0ebd2f\">%1</font>").arg(Corr);
-    else if (Rate >= 0 && Rate <= 30) return QString("<font color=\"#343bcd\">%1</font>").arg(Corr);
+    if (Rate > 80 && Rate <= 100) return QString(__COLOR(%1,"#e0cf37")).arg(Corr);
+    else if (Rate > 55 && Rate <= 80) return QString(__COLOR(%1,"#8a43c1")).arg(Corr);
+    else if (Rate > 30 && Rate <= 55) return QString(__COLOR(%1,"#0ebd2f")).arg(Corr);
+    else if (Rate >= 0 && Rate <= 30) return QString(__COLOR(%1,"#343bcd")).arg(Corr);
     else throw std::range_error("Rate out of range: Pls Check");
 }
 

@@ -12,6 +12,8 @@
 
 #define TODOUBLE(val) static_cast<double>(val)
 #define BUTTONCLICK &QPushButton::clicked
+#define __COLOR(target,color)\
+    "<font color="#color">"#target"</font>"
 
 namespace QuestionTemplate{
 struct MultipleChoice;

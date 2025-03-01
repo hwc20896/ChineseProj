@@ -88,7 +88,7 @@ void QuestionWidget::MultipleChoice::Cooldown(int msec){
 }
 
 void QuestionWidget::MultipleChoice::SetScore(int Corr, int Incorr){
-    ui->correctState->setText(QString("<font color=\"#ff0000\">錯誤數 %1</font> | <font color=\"#00dd12\">%2 正確數</font>").arg(Incorr).arg(Corr));
+    ui->correctState->setText(QString(__COLOR(錯誤數 %1,"#ff0000")" | " __COLOR(%2 正確數,"#00dd12")).arg(Incorr).arg(Corr));
 }
 
 void QuestionWidget::MultipleChoice::SetProgress(int CurrentProgress, int Total){
