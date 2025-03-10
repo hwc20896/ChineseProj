@@ -44,7 +44,7 @@ class Widget : public QStackedWidget{
         IntroWidget* intro;
         int currentGameMode = 0;
 
-        QString title;
+        QString windowtitle, gametitle;
         bool defaultBGMMute = false;
         bool defaultEffectMute = false;
         int64_t hardmodeTick = 30000;

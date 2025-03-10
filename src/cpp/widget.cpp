@@ -56,13 +56,14 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
     this->addWidget(rule);
     this->setCurrentIndex(currentGameMode);
 
-    QFile questionFile(QString("%1/QuestionList.json").arg(QDir::currentPath()));
-    QFile propertiesFile(QString("%1/properties.json").arg(QDir::currentPath()));
+    QFile questionFile("QuestionList.json");
+    QFile propertiesFile("properties.json");
     if (!questionFile.open(QIODevice::ReadOnly | QIODevice::Text) || !propertiesFile.open(QIODevice::ReadOnly | QIODevice::Text)){
         intro->intro_form->startGame->setEnabled(false);
         intro->intro_form->startGame->setToolTip("由於文件缺失，無法開始遊戲");
         intro->intro_form->rule->setEnabled(false);
         intro->intro_form->rule->setToolTip("由於文件缺失，無法打開規則頁");
+        intro->intro_form->gameTitle->setText("中華知識N題");
     }
     else{
         QString questionContext = QTextStream(&questionFile).readAll();
@@ -73,15 +74,17 @@ Widget::Widget(QWidget* parent) : QStackedWidget(parent){
         propertiesFile.close();
         if (propertyDoc.isObject()){
             auto property = propertyDoc.object();
-            title = property.value("title").toString();
-            this->setWindowTitle(title);
-            defaultBGMMute = property.value("default_background_mute").toBool();
-            defaultEffectMute = property.value("default_effect_mute").toBool();
-            hardmodeTick = property.value("hardmode_countdown_ms").toInteger(30000);
-            displayCount = property.value("display_quantity").toInteger(1);
-            isHardmodeEnabled = property.value("toggle_hardmode_enabled").toBool();
+            windowtitle = property["window_title"].toString("中華知識N題");
+            this->setWindowTitle(windowtitle);
+            gametitle = property["game_title"].toString("中華知識N題");
+            defaultBGMMute = property["default_background_mute"].toBool();
+            defaultEffectMute = property["default_effect_mute"].toBool();
+            hardmodeTick = property["hardmode_countdown_ms"].toInteger(30000);
+            displayCount = property["display_quantity"].toInteger(1);
+            isHardmodeEnabled = property["toggle_hardmode_enabled"].toBool();
 
             rule->rule_form->quantity->setText(QString("題目庫共有%1條，每次開始遊戲系統會隨機抽取%2條顯示。").arg(questionList.size()).arg(displayCount));
+            intro->intro_form->gameTitle->setText(gametitle);
         }
     }
     intro->isMuted = defaultBGMMute;
@@ -110,7 +113,7 @@ void Widget::startGame(){
     mng->UpdateMute();
     mng->setEffectMute(defaultEffectMute);
     this->close();
-    mng->setWindowTitle(title);
+    mng->setWindowTitle(windowtitle);
     if (this->isMaximized()) mng->showMaximized();
     else {
         mng->show();
@@ -145,7 +148,7 @@ void Widget::outroCall(){
     }
     out->isMuted = mng->isMuted;
     out->SetMute(out->isMuted);
-    out->setWindowTitle(title);
+    out->setWindowTitle(windowtitle);
     if (mng->isMaximized()) out->showMaximized();
     else out->show();
     connect(out,&OutroWidget::Replay,this,[=,this]{
@@ -154,7 +157,7 @@ void Widget::outroCall(){
         mng->isMuted = out->isMuted;
         mng->UpdateMute();
         out->close();
-        mng->setWindowTitle(title);
+        mng->setWindowTitle(windowtitle);
         if (out->isMaximized()) mng->showMaximized();
         else mng->show();
         connect(mng,&QuestionManagement::GameFinish,this,&Widget::outroCall);
