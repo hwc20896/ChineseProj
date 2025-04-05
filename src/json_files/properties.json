@@ -1,5 +1,6 @@
 {
-    "title": "中華文化知識100題",
+    "window_title": "中華文化知識100題",
+    "game_title": "中華文化知識100題",
     "display_quantity": 5,
     "default_background_mute": true,
     "default_effect_mute": false,
